@@ -1,0 +1,45 @@
+>> La gestion des fenêtres doit être parfaite : gestion de la minimalisation, du passage
+d’une autre fenetre, etc
+
+>>Vous devez afficher des textures différentes (vous avez le choix) selon si les murs
+sont face nord, sud, est, ouest
+
+>>Votre programme doit être capable d’avoir des couleurs différentes pour le sol et
+le plafond
+
+>>Le programme affiche l’image dans une fenêtre et respecte les règles suivantes :
+◦ Les touches flèches du gauche et droite du clavier doivent permettre de faire
+une rotation de la caméra (regarder a gauche et a droite)
+◦ Les touches W, A, S et D doivent permettre de déplacer la caméra (déplacement
+du personnage)
+◦ Appuyer sur la touche ESC doit fermer la fenêtre et quitter le programme
+proprement
+◦ Cliquer sur la croix rouge de la fenêtre doit fermer la fenêtre et quitter le
+programme proprement
+◦ L’utilisation d’images de la minilibX est fortement recommandée
+
+>>Votre programme doit prendre en premier argument un fichier de description de
+scène avec pour extension .cub
+◦ La map doit être composée d’uniquement ces 6 caractères : 0 pour les espaces
+vides, 1 pour les murs, et N,S,E ou W qui représentent la position de départ
+du joueur et son orientation.
+Cette simple map doit être valide
+
+>>La map doit être fermée/entourée de murs, sinon le programme doit renvoyer
+une erreur.
+
+>>Mis à part la description de la map, chaque type d’élément peut être séparée
+par une ou plusieurs lignes vides.
+
+>>La description de la carte sera toujours en dernier dans le fichier, le reste des
+éléments peut être dans n’importe quel ordre
+
+>>Sauf pour la map elle-même, les informations de chaque élément peuvent être
+séparées par un ou plusieurs espace(s).
+
+>>La carte doit être parsée en accord avec ce qui est présenté dans le fichier. Les
+espaces sont une partie valable de la carte, c’est à vous de les gérer correcte-
+ment. Vous devez pouvoir parser n’importe quelle sorte de carte, tant qu’elle
+respecte les règles de carte.
+
+https://cdn.intra.42.fr/pdf/pdf/115748/fr.subject.pdf
