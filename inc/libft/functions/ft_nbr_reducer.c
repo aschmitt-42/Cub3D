@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_nbr_reducer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 15:36:55 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/05/31 23:04:36 by eboumaza         ###   ########.fr       */
+/*   Created: 2023/08/16 19:56:59 by eboumaza          #+#    #+#             */
+/*   Updated: 2023/12/25 19:19:27 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../libft.h"
 
-void	cub3d(t_game *game)
+long long int	ft_nbr_reducer(long long int nbr, int digit)
 {
-	(void)game;
-}
+	long long int	count;
+	long long int	temp;
 
-void	init(t_game *game, char **av)
-{
-	game_construct(game);
-	init_map(av[1], game);
-	init_mlx(game);
-}
-
-int	main(int ac, char **av)
-{
-	t_game game;
-
-	if (ac != 2)
-		return (write(2, "Error args\n", 11), 1);
-	init(&game, av);
-	cub3d(&game);
-	free_game(&game, 0);
-	return (0);
+	if (digit <= 0)
+		return (0);
+	if (nbr < 0)
+		nbr *= -1;
+	if (ft_power(10, digit) < 0)
+		return (nbr);
+	while (nbr > ft_power(10, digit))
+	{
+		count = 1;
+		temp = nbr;
+		while (temp >= 10)
+		{
+			temp /= 10;
+			count *= 10;
+		}
+		nbr -= temp * count;
+	}
+	return (nbr);
 }

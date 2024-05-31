@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_nbr_max_pos.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/05/30 16:10:28 by aschmitt         ###   ########.fr       */
+/*   Created: 2023/08/07 19:17:50 by eboumaza          #+#    #+#             */
+/*   Updated: 2023/08/07 19:17:50 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
 
-void	check_extension(char *file)
+#include "../libft.h"
+
+long long int	ft_nbr_max_pos(long long int nbr)
 {
-	int	i;
+	long long int   max_pos;
 
-	
-}
-
-void	take_args(char *file, t_data *data)
-{
-	if (file == NULL)
-		return ;
-	check_extention(file);
+	max_pos = 1;
+	if (nbr < 0)
+		nbr *= -1;
+	while (nbr >= 10)
+	{
+		max_pos *= 10;
+		nbr /= 10;
+	}
+	return (max_pos);
 }

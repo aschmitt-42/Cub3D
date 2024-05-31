@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_in.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 15:36:55 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/05/31 23:04:36 by eboumaza         ###   ########.fr       */
+/*   Created: 2024/04/19 01:05:29 by eboumaza          #+#    #+#             */
+/*   Updated: 2024/04/19 01:16:08 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../libft.h"
 
-void	cub3d(t_game *game)
+int	is_in(char c, char *str)
 {
-	(void)game;
-}
+	int	i;
 
-void	init(t_game *game, char **av)
-{
-	game_construct(game);
-	init_map(av[1], game);
-	init_mlx(game);
-}
-
-int	main(int ac, char **av)
-{
-	t_game game;
-
-	if (ac != 2)
-		return (write(2, "Error args\n", 11), 1);
-	init(&game, av);
-	cub3d(&game);
-	free_game(&game, 0);
+	i = 0;
+	while (str[i] && str[i] != '0')
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
 	return (0);
 }

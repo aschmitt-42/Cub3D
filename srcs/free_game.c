@@ -1,37 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 15:36:55 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/05/31 23:04:36 by eboumaza         ###   ########.fr       */
+/*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
+/*   Updated: 2024/05/31 23:05:28 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	cub3d(t_game *game)
+void	game_construct(t_game *game)
 {
-	(void)game;
+	game->minilib.mlx_ptr = NULL;
+	game->minilib.win_ptr = NULL;
+	game->map = NULL;
+	game->width = 0;
+	game->height = 0;
 }
 
-void	init(t_game *game, char **av)
+void	free_map(t_game *game)
 {
-	game_construct(game);
-	init_map(av[1], game);
-	init_mlx(game);
+	int	i;
+
+	i = 0;
+	if (!game->map)
+		return ;
+	while (game->map[i])
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
 }
 
-int	main(int ac, char **av)
+void 	free_game(t_game *game, int error_code)
 {
-	t_game game;
-
-	if (ac != 2)
-		return (write(2, "Error args\n", 11), 1);
-	init(&game, av);
-	cub3d(&game);
-	free_game(&game, 0);
-	return (0);
+	free_map(game);
+	if (error_code)
+		exit (error_code);
 }
+
