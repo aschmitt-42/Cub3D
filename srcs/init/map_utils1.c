@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:42:26 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/01 21:19:00 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:27:26 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	still_header(t_game *game, size_t line)
 	*/
 	if (!game->map || !game->map[line])
 		return (0);
-	if (game->C && game->F && game->NO && game->SO && game->WE && game->EA)
+	if (game->C && game->F && game->NO && game->SO && game->WE && game->EA && game->map[line][0] != '\n')
 		return (0);
 	return (1);//verifier si toutes les infos du header sont remplie, et si la ligne nest pas juste un /n, alors header est finit
 }
