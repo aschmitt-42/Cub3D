@@ -6,50 +6,70 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/05/31 23:01:50 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:50:07 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_extention(char *file)
+void	create_color_FC(t_game *game, int line)
 {
-	int	i;
-
-	i = 0;
-	while (file[i])
-		i++;
-	if (file[i - 4] == '.' && file[i - 3] == 'c'
-		&& file[i - 2] == 'u' && file[i - 1] == 'b')
-		return (1);
-	printf("Erreur d'extension\n");
-	return (0);
+	(void)game;
+	(void)line;
 }
 
-char	**ft_malloc_map(char *file, int i, int fd)
+void	open_texture(t_game *game, size_t line)
 {
-	char	*temp;
-	char	**map;
-
-	i = 0;
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		return (printf("Erreur de fichier\n"), NULL);
-	temp = get_next_line(fd);
-	while (temp)
+	int	j;
+	
+	j = 2;
+	while (game->map[line])
 	{
-		i++;
-		free(temp);
-		temp = get_next_line(fd);
+		while (ft_iswspace(game->map[line][j]))
+			j++;
+		if (j == 2)
+		{
+			printf("Error\n");
+			free_map(game->map + line);
+		}
+		//ouvrir la texture et la mettre dans le bon element de game
 	}
-	if (i <= 2)
-		return (close(fd), printf("Erreur de MAP\n"), NULL);
-	map = malloc(sizeof(char *) * (i + 1));
-	close(fd);
-	if (!map)
-		return (NULL);
-	map[0] = NULL;
-	return (map);
+}
+
+int	still_header(t_game *game, size_t line)
+{
+	if (!game->map || !game->map[line])
+		return (0);
+	return (0);//verifier si toutes les infos du header sont remplie, et si la ligne nest pas juste un /n, alors header est finit
+}
+
+char	**handle_header(t_game *game)
+{
+	size_t	line;
+
+	line = 0;
+	while (still_header(game, line))
+	{
+		if ((!ft_strncmp(game->map[line], "NO", 2)
+			|| !ft_strncmp(game->map[line], "SO", 2)
+			|| !ft_strncmp(game->map[line], "WE", 2)
+			|| !ft_strncmp(game->map[line], "EA", 2)))
+			open_texture(game, line);
+		else if (game->map[line][0] == 'F' || game->map[line][0] == 'C')
+			create_color_FC(game, line);
+		else if (game->map[line][0] != '\n')
+			return (printf("Error\nInvalid line found\n"), free_map(game->map + line),
+				exit(1), NULL);
+		free(game->map[line]);
+		line++;
+	}
+	return (game->map + line);
+}
+
+void	map_verif(t_game *game)
+{
+	(void)game;
+	return;
 }
 
 void	map_filler(char *file, t_game *game)
@@ -58,13 +78,14 @@ void	map_filler(char *file, t_game *game)
 	int		fd;
 
 	i = 1;
-	game->map = ft_malloc_map(file, 0, 0);
+	game->map = ft_malloc_map(file);
 	if (!game->map)
 		exit(1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("Erreur de fichier\n");
+		free_map(game->map);
+		printf("Error\nOpen failed\n");
 		return ;
 	}
 	game->map[0] = get_next_line(fd);
@@ -74,8 +95,8 @@ void	map_filler(char *file, t_game *game)
 		i++;
 	}
 	close(fd);
-	game->width = ft_strlen(game->map[0]) - 1;
-	game->height = i - 1;
+	game->map = handle_header(game);//rempli toutes les infos du headers, et free les string associe, puis renvoie game->map + header_len
+	map_verif(game);
 }
 
 void	init_map(char *file, t_game *game)
@@ -83,5 +104,6 @@ void	init_map(char *file, t_game *game)
 	if (file == NULL || !check_extention(file))
 		exit(1);
 	map_filler(file, game);
+	print_map(game->map);
 	(void)game;
 }

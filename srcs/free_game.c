@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/05/31 23:05:28 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:47:38 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@ void	game_construct(t_game *game)
 	game->height = 0;
 }
 
-void	free_map(t_game *game)
+void	free_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	if (!game->map)
+	if (!map)
 		return ;
-	while (game->map[i])
+	while (map[i])
 	{
-		free(game->map[i]);
+		free(map[i]);
 		i++;
 	}
-	free(game->map);
+	free(map);
 }
 
 void 	free_game(t_game *game, int error_code)
 {
-	free_map(game);
+	free_map(game->map);
 	if (error_code)
 		exit (error_code);
 }

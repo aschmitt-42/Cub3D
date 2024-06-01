@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbr_max_pos.c                                   :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 19:17:50 by eboumaza          #+#    #+#             */
-/*   Updated: 2023/08/07 19:17:50 by eboumaza         ###   ########.fr       */
+/*   Created: 2024/06/01 14:08:02 by eboumaza          #+#    #+#             */
+/*   Updated: 2024/06/01 16:45:08 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d.h"
 
-#include "../libft.h"
-
-long long int	ft_nbr_max_pos(long long int nbr)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	long long int   max_pos;
+	size_t			i;
 
-	max_pos = 1;
-	if (nbr < 0)
-		nbr *= -1;
-	while (nbr >= 10)
-	{
-		max_pos *= 10;
-		nbr /= 10;
-	}
-	return (max_pos);
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] && i < n)
+		i++;
+	if (i < n)
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (0);
+}
+
+int	ft_iswspace(char c)
+{
+	if (c == 32 || c == 9 || c == 13 || c == 10)
+		return (1);
+	return (0);
 }
