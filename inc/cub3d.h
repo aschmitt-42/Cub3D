@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/01 17:58:36 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 20:08:02 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/types.h>
+
+#ifndef WIDTH
+# define WIDTH 10
+#endif
+
+#ifndef HEIGHT
+# define HEIGHT 10
+#endif
 
 typedef struct s_data
 {

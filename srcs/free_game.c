@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/01 18:12:17 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 20:15:49 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	game_construct(t_game *game)
 	game->map = NULL;
 	game->width = 0;
 	game->height = 0;
+	game->C = 0;
+	game->F = 0;
 	game->NO = NULL;
 	game->SO = NULL;
 	game->WE = NULL;
@@ -67,7 +69,8 @@ void	print_error(int code)
 	else if (code == 9)
 		printf("Error\n\n");
 	else if (code == 10)
-		printf("Error\n\n");
+		printf("Error\nFail to init mlx\n");
+	exit(code);
 }
 
 // code derreur : 1= ,2= ,3= ,4= ,5= ,6= ,7= ,8= ,9= ,10=

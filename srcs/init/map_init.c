@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/01 18:13:16 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 20:14:18 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	open_texture(t_game *game, size_t line)
 	int	j;
 	
 	j = 2;
+	return ;
 	while (game->map[line])
 	{
 		while (ft_iswspace(game->map[line][j]))
@@ -76,7 +77,6 @@ int	still_header(t_game *game, size_t line)
 {
 	if (!game->map || !game->map[line])
 		return (0);
-	return (0);
 	if (game->C && game->F && game->NO && game->SO && game->WE && game->EA)
 		return (0);
 	return (1);//verifier si toutes les infos du header sont remplie, et si la ligne nest pas juste un /n, alors header est finit
@@ -127,6 +127,7 @@ void	map_filler(char *file, t_game *game)
 		i++;
 	}
 	close(fd);
+	print_map(game->map);
 	game->map = handle_header(game);//rempli toutes les infos du headers, et free les string associe, puis renvoie game->map + header_len
 	map_verif(game);
 }
