@@ -6,16 +6,38 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/01 16:50:07 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 18:13:16 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	create_color_FC(t_game *game, int line)
+int	create_color_FC(t_game *game, int line, int j, int i)
 {
-	(void)game;
-	(void)line;
+	int	rgb[3];
+
+	while (game->map[line])
+	{
+		while (ft_iswspace(game->map[line][j]))
+			j++;
+		while (i < 3)
+		{
+			if (ft_isdigit(game->map[line][j]))
+			{
+				rgb[i] = ft_atoi(game->map[line] + j);
+				i++;
+			}
+			else
+				free_game(game, 1);
+			while (game->map[line][j] && game->map[line][j - 1] != ',')//revoir la condition darret
+				j++;
+		}
+	if (game->map[line][j] == 'C')
+		*game->C = create_rgb(rgb[0], rgb[1], rgb[2]);
+	else
+		*game->F = create_rgb(rgb[0], rgb[1], rgb[2]);
+	}
+	return (1);
 }
 
 void	open_texture(t_game *game, size_t line)
@@ -28,19 +50,36 @@ void	open_texture(t_game *game, size_t line)
 		while (ft_iswspace(game->map[line][j]))
 			j++;
 		if (j == 2)
-		{
-			printf("Error\n");
-			free_map(game->map + line);
-		}
-		//ouvrir la texture et la mettre dans le bon element de game
+			free_game(game, 1);
+		if (game->map[line][0] == 'N' && game->map[line][1] == 'O')
+			game->NO = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
+				game->map[line] + j, &game->width, &game->height);
+		else if (game->map[line][0] == 'S' && game->map[line][1] == 'O')
+			game->SO = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
+				game->map[line] + j, &game->width, &game->height);
+		else if (game->map[line][0] == 'W' && game->map[line][1] == 'E')
+			game->WE = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
+				game->map[line] + j, &game->width, &game->height);
+		else if (game->map[line][0] == 'E' && game->map[line][1] == 'A')
+			game->EA = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
+				game->map[line] + j, &game->width, &game->height);
+		//verif si lallocation a fonctionner, sinon free_game;
 	}
+}
+void	map_verif(t_game *game)
+{
+	(void)game;
+	return;
 }
 
 int	still_header(t_game *game, size_t line)
 {
 	if (!game->map || !game->map[line])
 		return (0);
-	return (0);//verifier si toutes les infos du header sont remplie, et si la ligne nest pas juste un /n, alors header est finit
+	return (0);
+	if (game->C && game->F && game->NO && game->SO && game->WE && game->EA)
+		return (0);
+	return (1);//verifier si toutes les infos du header sont remplie, et si la ligne nest pas juste un /n, alors header est finit
 }
 
 char	**handle_header(t_game *game)
@@ -56,20 +95,13 @@ char	**handle_header(t_game *game)
 			|| !ft_strncmp(game->map[line], "EA", 2)))
 			open_texture(game, line);
 		else if (game->map[line][0] == 'F' || game->map[line][0] == 'C')
-			create_color_FC(game, line);
+			create_color_FC(game, line, 1, 0);
 		else if (game->map[line][0] != '\n')
-			return (printf("Error\nInvalid line found\n"), free_map(game->map + line),
-				exit(1), NULL);
-		free(game->map[line]);
+			free_game(game, 1);
 		line++;
 	}
+	//free les tab davant
 	return (game->map + line);
-}
-
-void	map_verif(t_game *game)
-{
-	(void)game;
-	return;
 }
 
 void	map_filler(char *file, t_game *game)

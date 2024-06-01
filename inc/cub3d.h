@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/01 16:49:34 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 17:58:36 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ typedef struct s_game
 	int			width;
 	int			height;
 	char		**map;
-	char		*NO;
-	char		*SO;
-	char		*WE;
-	char		*EA;
-	char		*F;
-	char		*C;
-	t_data		minilib;
+	void		*NO;
+	void		*SO;
+	void		*WE;
+	void		*EA;
+	int			*F;
+	int			*C;
+	t_data		mlibx;
 }				t_game;
 
 // construct
@@ -67,6 +67,9 @@ char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strcpy(char *dest, const char *src);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_atoi(const char *str);
 int		ft_iswspace(char c);
+int		ft_isdigit(int c);
+int		create_rgb(unsigned char r, unsigned char g, unsigned char b);
 
 #endif

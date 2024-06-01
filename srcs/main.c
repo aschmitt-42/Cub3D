@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:36:55 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/05/31 23:04:36 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 18:09:40 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	cub3d(t_game *game)
 void	init(t_game *game, char **av)
 {
 	game_construct(game);
-	init_map(av[1], game);
 	init_mlx(game);
+	init_map(av[1], game);
 }
 
 int	main(int ac, char **av)
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 	t_game game;
 
 	if (ac != 2)
-		return (write(2, "Error args\n", 11), 1);
+		return (write(2, "Error\nNo .cub file specified\n", 29), 1);
 	init(&game, av);
 	cub3d(&game);
 	free_game(&game, 0);
