@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:36:55 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/01 18:09:40 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 20:41:59 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	init(t_game *game, char **av)
 	game_construct(game);
 	init_mlx(game);
 	init_map(av[1], game);
+	game->mlibx.win_ptr = mlx_new_window
+		(game->mlibx.mlx_ptr, WIDTH * 120, HEIGHT * 120, "Cub3D");
+	if (!game->mlibx.win_ptr)
+		free_game(game, 10);
 }
 
 int	main(int ac, char **av)

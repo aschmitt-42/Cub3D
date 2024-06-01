@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/01 20:08:02 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:19:25 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ typedef struct s_game
 	int			width;
 	int			height;
 	char		**map;
+	char		**p_map;
 	void		*NO;
 	void		*SO;
 	void		*WE;
 	void		*EA;
-	int			*F;
-	int			*C;
+	int			F;
+	int			C;
 	t_data		mlibx;
 }				t_game;
 
@@ -52,12 +53,16 @@ typedef struct s_game
 void	game_construct(t_game *game);
 
 // free
-void	free_map(char **map);
+void	free_map(t_game *game, int line);
 void 	free_game(t_game *game, int error_code);
 
 // init map
+void	create_color_FC(t_game *game, int line, int j, int i);
+void	open_texture(t_game *game, size_t line);
+void 	del_newline(char *line);
+int		still_header(t_game *game, size_t line);
 int		check_extention(char *file);
-char	**ft_malloc_map(char *file);
+char	**ft_malloc_map(t_game *game, char *file);
 void	print_map(char **map);
 void	init_map(char *file, t_game *game);
 

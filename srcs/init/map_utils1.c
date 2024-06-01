@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   map_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:42:26 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/01 17:42:56 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:19:00 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	check_extention(char *file)
 	return (0);
 }
 
-char	**ft_malloc_map(char *file)
+char	**ft_malloc_map(t_game *game, char *file)
 {
 	char	*temp;
 	char	**map;
@@ -56,7 +56,7 @@ char	**ft_malloc_map(char *file)
 	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (printf("Error\nOpen failed\n"), NULL);
+		free_game(game, 1);
 	temp = get_next_line(fd);
 	while (temp)
 	{
@@ -68,6 +68,45 @@ char	**ft_malloc_map(char *file)
 	close(fd);
 	if (!map)
 		return (NULL);
+	game->p_map = map;
 	map[0] = NULL;
 	return (map);
+}
+
+void del_newline(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+		i++;
+	i--;
+	while (line[i] == '\n' || ft_iswspace(line[i]))
+	{
+		line[i] = '\0';
+		i--;
+	}
+}
+
+int	still_header(t_game *game, size_t line)
+{
+	/*
+	if (!game->NO)
+		printf("NO\n");
+	if (!game->EA)
+		printf("EA\n");
+	if (!game->WE)
+		printf("WE\n");
+	if (!game->SO)
+		printf("SO\n");
+	if (!game->F)
+		printf("F\n");
+	if (!game->C)
+		printf("C\n");
+	*/
+	if (!game->map || !game->map[line])
+		return (0);
+	if (game->C && game->F && game->NO && game->SO && game->WE && game->EA)
+		return (0);
+	return (1);//verifier si toutes les infos du header sont remplie, et si la ligne nest pas juste un /n, alors header est finit
 }

@@ -6,7 +6,7 @@
 #    By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/06/01 14:43:06 by eboumaza         ###   ########.fr        #
+#    Updated: 2024/06/01 20:59:01 by eboumaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC 		= $(SRC_DIR)main.c \
 			  $(SRC_DIR)free_game.c \
 			  $(SRC_DIR)$(INIT_DIR)map_init.c \
 			  $(SRC_DIR)$(INIT_DIR)mlx_init.c \
-			  $(SRC_DIR)$(INIT_DIR)map_utils.c \
+			  $(SRC_DIR)$(INIT_DIR)map_utils1.c \
+			  $(SRC_DIR)$(INIT_DIR)map_utils2.c \
 			  $(SRC_DIR)$(LIBFT_DIR)gnl.c \
 			  $(SRC_DIR)$(LIBFT_DIR)utils1.c \
 			  $(SRC_DIR)$(LIBFT_DIR)utils2.c \
