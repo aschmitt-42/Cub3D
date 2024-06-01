@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/01 21:19:49 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 22:04:57 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,29 @@
 
 void	map_verif(t_game *game)
 {
-	(void)game;
-	return;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == '0')
+			{
+				if (!game->map[i + 1] || j == 0 || i == 0 || game->map[i][j + 1] == '\0')
+					free_game(game, 3);
+				if (!(game->map[i][j + 1] == '1' || game->map[i][j + 1] == '0')
+					|| !(game->map[i][j - 1] == '1' || game->map[i][j - 1] == '0')
+					|| !(game->map[i + 1][j] == '1' || game->map[i + 1][j] == '0')
+					|| !(game->map[i - 1][j] == '1' || game->map[i - 1][j] == '0'))
+					free_game(game, 3);
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 char	**handle_header(t_game *game)
@@ -64,6 +85,7 @@ void	map_filler(char *file, t_game *game)
 	}
 	close(fd);
 	game->map = handle_header(game);//rempli toutes les infos du headers, et free les string associe, puis renvoie game->map + header_len
+	print_map(game->map);
 	map_verif(game);
 }
 
@@ -72,6 +94,5 @@ void	init_map(char *file, t_game *game)
 	if (file == NULL || !check_extention(file))
 		exit(1);
 	map_filler(file, game);
-	print_map(game->map);
 	(void)game;
 }

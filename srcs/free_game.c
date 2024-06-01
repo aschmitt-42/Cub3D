@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/01 21:22:55 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:31:48 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_error(int code)
 	else if (code == 2)
 		printf("Error\nInvalid line found\n");
 	else if (code == 3)
-		printf("Error\n\n");
+		printf("Error\nMap is not surrounded by walls\n");
 	else if (code == 4)
 		printf("Error\n\n");
 	else if (code == 5)
