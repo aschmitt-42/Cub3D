@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/01 21:19:25 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:26:41 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <sys/types.h>
 
 #ifndef WIDTH
-# define WIDTH 10
+# define WIDTH 1920
 #endif
 
 #ifndef HEIGHT
-# define HEIGHT 10
+# define HEIGHT 1080
 #endif
 
 typedef struct s_data
@@ -71,6 +71,11 @@ void	init_mlx(t_game *game);
 
 // game
 void	cub3d(t_game *game);
+
+
+
+int		render_next_frame(t_game *game);
+
 
 // libft
 char	*get_next_line(int fd);

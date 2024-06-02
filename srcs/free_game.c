@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/01 21:31:48 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:55:43 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	print_error(int code)
 {
 	if (code == 1)
+		printf("Error\nError\nMlx init failed\n");
+	if (code == 2)
 		printf("Error\nOpen failed\n");
-	else if (code == 2)
-		printf("Error\nInvalid line found\n");
 	else if (code == 3)
-		printf("Error\nMap is not surrounded by walls\n");
+		printf("Error\nInvalid line found\n");
 	else if (code == 4)
-		printf("Error\n\n");
+		printf("Error\nMap is not surrounded by walls\n");
 	else if (code == 5)
 		printf("Error\n\n");
 	else if (code == 6)
@@ -33,7 +33,7 @@ void	print_error(int code)
 	else if (code == 9)
 		printf("Error\n\n");
 	else if (code == 10)
-		printf("Error\nFail to init mlx\n");
+		printf("Closing Cub3d\n");
 }
 
 void	game_construct(t_game *game)
@@ -42,8 +42,8 @@ void	game_construct(t_game *game)
 	game->mlibx.win_ptr = NULL;
 	game->map = NULL;
 	game->p_map = NULL;
-	game->width = 0;
-	game->height = 0;
+	game->width = WIDTH;
+	game->height = HEIGHT;
 	game->C = 0;
 	game->F = 0;
 	game->NO = NULL;
@@ -97,6 +97,8 @@ void 	free_game(t_game *game, int error_code)
 		print_error(error_code);
 	free_map(game, 0);
 	free_mlx(game);
+	if (error_code == 10)
+		exit(0);
 	if (error_code)
 		exit(error_code);
 }

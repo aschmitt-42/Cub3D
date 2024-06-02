@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:36:55 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/01 20:41:59 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:04:40 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,18 @@
 void	cub3d(t_game *game)
 {
 	(void)game;
+	mlx_loop_hook(game->mlibx.mlx_ptr, render_next_frame, &game);
+	mlx_loop(game->mlibx.mlx_ptr);
 }
 
 void	init(t_game *game, char **av)
 {
 	game_construct(game);
-	init_mlx(game);
+	game->mlibx.mlx_ptr = mlx_init();
+	if (!game->mlibx.mlx_ptr)
+		free_game(game, 1);
 	init_map(av[1], game);
-	game->mlibx.win_ptr = mlx_new_window
-		(game->mlibx.mlx_ptr, WIDTH * 120, HEIGHT * 120, "Cub3D");
-	if (!game->mlibx.win_ptr)
-		free_game(game, 10);
+	init_mlx(game);
 }
 
 int	main(int ac, char **av)
@@ -36,6 +37,6 @@ int	main(int ac, char **av)
 		return (write(2, "Error\nNo .cub file specified\n", 29), 1);
 	init(&game, av);
 	cub3d(&game);
-	free_game(&game, 0);
+	free_game(&game, 10);
 	return (0);
 }

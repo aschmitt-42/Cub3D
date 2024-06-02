@@ -6,7 +6,7 @@
 #    By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/06/01 20:59:01 by eboumaza         ###   ########.fr        #
+#    Updated: 2024/06/02 17:26:06 by eboumaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ RM			= rm -f
 
 SRC 		= $(SRC_DIR)main.c \
 			  $(SRC_DIR)free_game.c \
+			  $(SRC_DIR)render_frame.c \
 			  $(SRC_DIR)$(INIT_DIR)map_init.c \
 			  $(SRC_DIR)$(INIT_DIR)mlx_init.c \
 			  $(SRC_DIR)$(INIT_DIR)map_utils1.c \

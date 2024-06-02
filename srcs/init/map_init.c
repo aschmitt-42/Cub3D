@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/01 22:04:57 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:16:01 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	map_verif(t_game *game)
 			if (game->map[i][j] == '0')
 			{
 				if (!game->map[i + 1] || j == 0 || i == 0 || game->map[i][j + 1] == '\0')
-					free_game(game, 3);
+					free_game(game, 4);
 				if (!(game->map[i][j + 1] == '1' || game->map[i][j + 1] == '0')
 					|| !(game->map[i][j - 1] == '1' || game->map[i][j - 1] == '0')
 					|| !(game->map[i + 1][j] == '1' || game->map[i + 1][j] == '0')
 					|| !(game->map[i - 1][j] == '1' || game->map[i - 1][j] == '0'))
-					free_game(game, 3);
+					free_game(game, 4);
 			}
 			j++;
 		}
@@ -54,14 +54,10 @@ char	**handle_header(t_game *game)
 		else if (game->map[line][0] == 'F' || game->map[line][0] == 'C')
 			create_color_FC(game, line, 1, 0);
 		else if (game->map[line][0] != '\n')
-		{
-			printf("%ld et %s\n", line, game->map[line]);
-			free_game(game, 2);
-		}
+			free_game(game, 3);
 		line++;
 	}
 	free_map(game, line);//supprime les strings du headers
-	//free les tab davant
 	return (game->map + line);
 }
 
@@ -73,10 +69,10 @@ void	map_filler(char *file, t_game *game)
 	i = 1;
 	game->map = ft_malloc_map(game, file);
 	if (!game->map)
-		free_game(game, 1);
+		free_game(game, 2);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		free_game(game, 1);
+		free_game(game, 2);
 	game->map[0] = get_next_line(fd);
 	while (game->map[i - 1])
 	{
