@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/02 17:16:01 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:14:45 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	map_verif(t_game *game)
 	size_t	j;
 
 	i = 0;
+	if (!game->map)
+		free_game(game, 5);
 	while (game->map[i])
 	{
 		j = 0;
