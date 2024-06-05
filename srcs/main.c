@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:36:55 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/02 18:04:40 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:29:23 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	cub3d(t_game *game)
 {
 	(void)game;
-	mlx_loop_hook(game->mlibx.mlx_ptr, render_next_frame, &game);
+	render_next_frame(game);
+	// mlx_loop_hook(game->mlibx.mlx_ptr, render_next_frame, &game);
 	mlx_loop(game->mlibx.mlx_ptr);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/02 19:15:00 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:28:54 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ void	game_construct(t_game *game)
 	game->SO = NULL;
 	game->WE = NULL;
 	game->EA = NULL;
+	game->player.dirX = 0;
+	game->player.dirY = 0;
+	game->player.planeX = 0;
+	game->player.planeY = 0;
+	game->player.posX = 0;
+	game->player.posY = 0;
 }
 
 // 0 pour toute la map, sinon le nombre de ligne a free

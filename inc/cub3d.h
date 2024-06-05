@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/02 17:26:41 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:20:39 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ typedef struct s_data
 	void		*win_ptr;
 }				t_data;
 
+typedef struct s_player
+{
+	int		posX;
+	int		posY;
+	int		dirX;
+	int		dirY;
+	int		planeX;
+	int		planeY;
+}				t_player;
+
 typedef struct s_game
 {
 	int			width;
@@ -47,6 +57,7 @@ typedef struct s_game
 	int			F;
 	int			C;
 	t_data		mlibx;
+	t_player	player;
 }				t_game;
 
 // construct
