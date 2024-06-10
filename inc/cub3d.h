@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/05 16:20:39 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/10 12:42:46 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/types.h>
+# include <math.h>
 
 #ifndef WIDTH
 # define WIDTH 1920
