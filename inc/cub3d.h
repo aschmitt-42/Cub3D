@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/10 12:42:46 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/11 11:53:36 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,20 @@ typedef struct s_data
 
 typedef struct s_player
 {
-	int		posX;
-	int		posY;
-	int		dirX;
-	int		dirY;
-	int		planeX;
-	int		planeY;
+	double		posX;
+	double		posY;
+	double		dirX;
+	double		dirY;
+	double		planeX;
+	double		planeY;
 }				t_player;
 
 typedef struct s_game
 {
 	int			width;
 	int			height;
+	double		moveSpeed;
+	double		rotSpeed;
 	char		**map;
 	char		**p_map;
 	void		*NO;
