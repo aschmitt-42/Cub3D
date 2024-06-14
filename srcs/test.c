@@ -27,11 +27,38 @@ int worldMap[mapWidth][mapHeight]=
   {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,4,4,4,4,4,4,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,1},
   {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+
+/*
+{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+*/
 
 int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
 {
@@ -53,22 +80,21 @@ void clear_window(void *mlx_ptr, void *win_ptr, int width, int height)
     }
 }
 
-void	draw(t_game game)
+void	draw(t_game *game)
 {
 	
 	// printf("x : %f\ny : %f\n", game.player.dirX, game.player.dirY);
-
-	for(int x = 0; x < screenWidth ; x++)
+	
+	for(double x = 0; x < screenWidth ; x++)
 	{
 		//calculate ray position and direction
-		double test = (screenWidth - 1);
-		double cameraX = 2 * x / test; // x-coordinate in camera space
-		printf("camera x : %f\n", cameraX);
-		double rayDirX = game.player.dirX + game.player.planeX * cameraX;
-		double rayDirY = game.player.dirY + game.player.planeY * cameraX;
+		double cameraX = 2 * x / (double)screenWidth - 1; // x-coordinate in camera space
+		
+		double rayDirX = game->player.dirX + game->player.planeX * cameraX;
+		double rayDirY = game->player.dirY + game->player.planeY * cameraX;
 		//dans quelle case de la carte nous nous trouvons (convertir double en int)
-		int mapX = game.player.posX;
-		int mapY = game.player.posY ;
+		int mapX = game->player.posX;
+		int mapY = game->player.posY;
 
 		//length of ray from current position to next x or y-side
 	  	double sideDistX;
@@ -76,16 +102,15 @@ void	draw(t_game game)
 
 		//longueur du rayon depuis la position actuelle jusqu'au prochain côté x ou y
 		double deltaDistX;
-		if (rayDirX == 0) 
+		if (rayDirX == 0)
 			deltaDistX = 1e30;
 		else 
-			deltaDistX = fabs(1 / rayDirX); // abs(1 / rayDirX)
+			deltaDistX = fabs(1 / rayDirX); // sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
 		double deltaDistY;
 		if (rayDirY == 0) 
 			deltaDistY = 1e30;
 		else 
-			deltaDistY = fabs(1 / rayDirY);// abs(1 / rayDirY)
-		double perpWallDist;
+			deltaDistY = fabs(1 / rayDirY); //  sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY)); 
 
 		//dans quelle direction avancer dans la direction x ou y (soit +1 ou -1)
 		int stepX;
@@ -98,23 +123,24 @@ void	draw(t_game game)
 		if (rayDirX < 0)
 		{
 			stepX = -1;
-			sideDistX = (game.player.posX - mapX) * deltaDistX;
+			sideDistX = (game->player.posX - mapX) * deltaDistX;
 		}
 		else
 		{
 			stepX = 1;
-			sideDistX = (mapX + 1.0 - game.player.posX) * deltaDistX;
+			sideDistX = (mapX + 1.0 - game->player.posX) * deltaDistX;
 		}
 		if (rayDirY < 0)
 		{
 			stepY = -1;
-			sideDistY = (game.player.posY  - mapY) * deltaDistY;
+			sideDistY = (game->player.posY  - mapY) * deltaDistY;
 		}
 		else
 		{
 			stepY = 1;
-			sideDistY = (mapY + 1.0 - game.player.posY ) * deltaDistY;
+			sideDistY = (mapY + 1.0 - game->player.posY ) * deltaDistY;
 		}
+
 		//perform DDA
 	  	while (hit == 0)
 	  	{
@@ -134,6 +160,7 @@ void	draw(t_game game)
 			if (worldMap[mapX][mapY] > 0)
 				hit = 1;
 	  	}
+		double perpWallDist;
 		if(side == 0)
 	  		perpWallDist = (sideDistX - deltaDistX);
       	else
@@ -171,7 +198,7 @@ void	draw(t_game game)
 
     	for (y = drawStart; y <= drawEnd; y++)
    		{
-    	    mlx_pixel_put(game.mlibx.mlx_ptr, game.mlibx.win_ptr, x, y, color);
+    	    mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, x, y, color);
     	}	
     }
 }
@@ -187,6 +214,8 @@ void	draw(t_game game)
 
 int	keey(int keycode, t_game *game)
 {
+	
+	
 	if (keycode == 65361)
 	{
 		double oldDirX = game->player.dirX;
@@ -210,11 +239,18 @@ int	keey(int keycode, t_game *game)
 		int x = game->player.posX + game->player.dirX * game->moveSpeed;
 		int y = game->player.posY;
 		if(worldMap[x][y] == 0)
-			game->player.posX += game->player.dirX * game->moveSpeed;
+		{
+			double te = game->player.dirX * game->moveSpeed;
+			game->player.posX += te;
+		}
 		x =	game->player.posX;
 		y = game->player.posY + game->player.dirY * game->moveSpeed;
 		if(worldMap[x][y] == 0)
-			game->player.posY += game->player.dirY * game->moveSpeed;
+		{
+			double te = game->player.dirY * game->moveSpeed;
+			game->player.posY += te;
+		}
+			
 	}
 	if (keycode == 115)
 	{
@@ -233,8 +269,9 @@ int	keey(int keycode, t_game *game)
 	// if (keycode == 65363 || keycode == 65361)
 	// 	//cam
 	clear_window(game->mlibx.mlx_ptr, game->mlibx.win_ptr, 640, 480);
-	draw(*game);
-	
+	draw(game);
+	printf("POS = X : %f y : %f\n", game->player.posX, game->player.posY);
+	printf("DIR = X : %f y : %f\n", game->player.dirX, game->player.dirY);
 	return (0);
 }
 
@@ -245,8 +282,8 @@ int main()
 	double time = 0; //time of current frame
 	double oldTime = 0; //time of previous frame
 
-	game.player.posX = 20;
-	game.player.posY = 12;
+	game.player.posX = 21;
+	game.player.posY = 10;
 	game.player.dirX = 1;
 	game.player.dirY = 0;
 	game.player.planeX = 0;
@@ -255,9 +292,11 @@ int main()
 	game.mlibx.win_ptr = mlx_new_window(game.mlibx.mlx_ptr, screenWidth, screenHeight, "Cub3D");
 	game.rotSpeed = 0.059400;
 	game.moveSpeed = 0.1;
+	draw(&game);
 	mlx_hook(game.mlibx.win_ptr, 2, 1L << 0, keey, &game);
-
-	draw(game);
+	
+	mlx_loop(game.mlibx.mlx_ptr);
+	
 	// oldTime = time;
     //time = getTicks();
 	// double frameTime = (time - oldTime) / 1000.0; //frameTime is the time this frame has taken, in seconds
@@ -268,5 +307,5 @@ int main()
     // game.rotSpeed = 3; //frameTime * 3.0;
 	
 
-	mlx_loop(game.mlibx.mlx_ptr);
+	
 }

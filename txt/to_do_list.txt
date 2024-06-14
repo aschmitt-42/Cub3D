@@ -50,3 +50,11 @@ https://cdn.intra.42.fr/pdf/pdf/115748/fr.subject.pdf
 
 ATTENTION CONVERTION EN DOUBLE A CERTAIN PROBLEME
     DONC PROBLEME LORS DES DEPLACEMENT
+
+x = 20 y 12
+
+x = double te = game->player.dirX * game->moveSpeed;
+
+y = double te = game->player.dirY * game->moveSpeed;
+
+game.moveSpeed = 0.059400;
