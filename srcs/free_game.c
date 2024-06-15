@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/11 11:38:31 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/15 19:17:22 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	game_construct(t_game *game)
 	game->player.dirY = 0;
 	game->player.planeX = 0;
 	game->player.planeY = 0;
-	game->player.game.player.posX = 0;
+	game->player.posX = 0;
 	game->player.posY = 0;
 }
 
