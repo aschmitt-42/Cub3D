@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 19:18:25 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/15 20:20:02 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:07:44 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void	draw(t_game *game)
         double wallX; //where exactly the wall was hit
         if (side == 0) 
             wallX = game->player.posY + perpWallDist * rayDirY;
-        else           
+        else
             wallX = game->player.posX + perpWallDist * rayDirX;
         wallX -= floor((wallX));
 
@@ -180,13 +180,14 @@ void	draw(t_game *game)
             texX = texWidth - texX - 1;
         if(side == 1 && rayDirY < 0) 
             texX = texWidth - texX - 1;
-      
-		int y;
-
-    	for (y = drawStart; y <= drawEnd; y++)
-   		{
-    	    mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, x, y, color);
-    	}	
+		
+		double step = 1.0 * texHeight / lineHeight;
+		double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
+		for(int y = drawStart; y<drawEnd; y++)
+		{
+			int texY = (int)texPos & (texHeight - 1);
+			texPos += step;
+		}
     }
 }
 
@@ -255,6 +256,8 @@ int	keey(int keycode, t_game *game)
 int main()
 {
 	t_game game;
+	int	width;
+	int	height;
 	
 	double time = 0; //time of current frame
 	double oldTime = 0; //time of previous frame
@@ -269,7 +272,11 @@ int main()
 	game.mlibx.win_ptr = mlx_new_window(game.mlibx.mlx_ptr, screenWidth, screenHeight, "Cub3D");
 	game.rotSpeed = 0.059400;
 	game.moveSpeed = 0.1;
-	// draw(&game);
+	game.NO = mlx_xpm_file_to_image(game.mlibx.mlx_ptr, "/home/jean/42_cursus/cub3D/assets/texture/eagle.xpm", &width, &height);
+	game.SO = mlx_xpm_file_to_image(game.mlibx.mlx_ptr, "/home/jean/42_cursus/cub3D/assets/texture/greystone.xpm", &width, &height);
+	game.WE = mlx_xpm_file_to_image(game.mlibx.mlx_ptr, "/home/jean/42_cursus/cub3D/assets/texture/purplestone.xpm", &width, &height);
+	game.EA = mlx_xpm_file_to_image(game.mlibx.mlx_ptr, "/home/jean/42_cursus/cub3D/assets/texture/red.xpm", &width, &height);
+	draw(&game);
 	mlx_hook(game.mlibx.win_ptr, 2, 1L << 0, keey, &game);
 	
 	mlx_loop(game.mlibx.mlx_ptr);
