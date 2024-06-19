@@ -58,3 +58,22 @@ x = double te = game->player.dirX * game->moveSpeed;
 y = double te = game->player.dirY * game->moveSpeed;
 
 game.moveSpeed = 0.059400;
+
+init vecteur direction avec N W E S ainsi que vecteur plan
+
+    if (depart == 'N')
+		ray.dirx = -1;
+	if (depart == 'S')
+		ray.dirx = 1;
+	if (depart == 'E')
+		ray.diry = 1;
+	if (depart == 'W')
+		ray.diry = -1;
+	if (depart == 'N')
+		ray.plany = 0.66;
+	if (depart == 'S')
+		ray.plany = -0.66;
+	if (depart == 'E')
+		ray.planx = 0.66;
+	if (depart == 'W')
+		ray.planx = -0.66;

@@ -269,16 +269,21 @@ void	draw(t_game *game)
 			drawEnd = h - 1;
 		//choose wall color
     	
-		if (worldMap[mapX][mapY] == 1)
-			color = create_trgb(0, 255, 0, 0);
-		else if (worldMap[mapX][mapY] == 2)
-			color = create_trgb(0, 0, 255, 0);
-		else if (worldMap[mapX][mapY] == 3)
-			color = create_trgb(0, 0, 0, 255);
-		else if (worldMap[mapX][mapY] == 4)
-			color = create_trgb(0, 255, 255, 255);
+		int	n;
+		if (side == 1)
+			n = 127;
 		else
-			color = create_trgb(0, 255, 255, 0);
+			n = 255;
+		if (worldMap[mapX][mapY] == 1)
+			color = create_trgb(0, n, 0, 0);
+		else if (worldMap[mapX][mapY] == 2)
+			color = create_trgb(0, 0, n, 0);
+		else if (worldMap[mapX][mapY] == 3)
+			color = create_trgb(0, 0, 0, n);
+		else if (worldMap[mapX][mapY] == 4)
+			color = create_trgb(0, n, n, n);
+		else
+			color = create_trgb(0, n, n, 0);
 		//give x and y sides different brightness
 		// if (side == 1)
 		// 	color = color / 2;

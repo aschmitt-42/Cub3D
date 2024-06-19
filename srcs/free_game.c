@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/15 19:17:22 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:15:29 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,14 @@ void	game_construct(t_game *game)
 	game->player.dirY = 0;
 	game->player.planeX = 0;
 	game->player.planeY = 0;
-	game->player.posX = 0;
-	game->player.posY = 0;
+	game->player.posX = 1;
+	game->player.posY = 16;
+	game->key.z = 0;
+	game->key.s = 0;
+	game->key.q = 0;
+	game->key.d = 0;
+	game->key.left = 0;
+	game->key.right = 0;
 }
 
 // 0 pour toute la map, sinon le nombre de ligne a free

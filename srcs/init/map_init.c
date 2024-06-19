@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/02 19:14:45 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:08:22 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,4 @@ void	init_map(char *file, t_game *game)
 	if (file == NULL || !check_extention(file))
 		exit(1);
 	map_filler(file, game);
-	(void)game;
 }
