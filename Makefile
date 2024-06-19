@@ -6,7 +6,7 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/06/17 15:35:31 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/06/19 12:54:35 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LDFLAGS 	= -Lminilibx/mlx_Linux -Lminilibx/mlx -L/usr/lib -Imlx_linux -lXext -lX
 LIB 		= inc/ml/libmlx.a inc/ml/libmlx_Linux.a
 RM			= rm -f
 
-SRC 		= $(SRC_DIR)test.c
+SRC 		= $(SRC_DIR)no_texture.c
 
 # $(SRC_DIR)main.c \
 			  $(SRC_DIR)free_game.c \

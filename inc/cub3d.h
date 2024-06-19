@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/11 11:53:36 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:16:55 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,25 @@ typedef struct s_player
 	double		planeY;
 }				t_player;
 
+typedef struct s_key
+{
+	int		z;
+	int		q;
+	int		s;
+	int		d;
+	int		left;
+	int		right;
+}				t_key;
+
+typedef struct s_img
+{
+	void	*img;
+	int		*addr;
+	int 	bpp;
+    int 	size_line;
+   	int 	endian;
+}				t_img;
+
 typedef struct s_game
 {
 	int			width;
@@ -61,6 +80,9 @@ typedef struct s_game
 	int			C;
 	t_data		mlibx;
 	t_player	player;
+	t_key		key;
+	t_img		img;
+	t_img		img2;
 }				t_game;
 
 // construct
@@ -89,10 +111,6 @@ void	cub3d(t_game *game);
 
 
 int		render_next_frame(t_game *game);
-
-
-// libft
-char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *src);
 char	*ft_strjoin(const char *s1, const char *s2);
