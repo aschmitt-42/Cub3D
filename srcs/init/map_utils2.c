@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 20:58:16 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/19 17:02:38 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:26:10 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	create_color_FC(t_game *game, int line, int j, int i)
 void	open_texture(t_game *game, size_t line)
 {
 	int	j;
-	int	width;
-	int	height;
 
 	j = 2;
 	while (ft_iswspace(game->map[line][j]))
@@ -51,16 +49,16 @@ void	open_texture(t_game *game, size_t line)
 		free_game(game, 1);
 	del_newline(game->map[line]);
 	if (game->map[line][0] == 'N' && game->map[line][1] == 'O')
-		game->NO = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
-			game->map[line] + j, &width, &height);
+		game->NO.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
+			game->map[line] + j, &game->NO.width, &game->NO.height);
 	else if (game->map[line][0] == 'S' && game->map[line][1] == 'O')
-		game->SO = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
-			game->map[line] + j, &width, &height);
+		game->SO.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
+			game->map[line] + j, &game->SO.width, &game->SO.height);
 	else if (game->map[line][0] == 'W' && game->map[line][1] == 'E')
-		game->WE = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
-			game->map[line] + j, &width, &height);
+		game->WE.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
+			game->map[line] + j, &game->WE.width, &game->WE.height);
 	else if (game->map[line][0] == 'E' && game->map[line][1] == 'A')
-		game->EA = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
-			game->map[line] + j, &width, &height);
+		game->EA.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
+			game->map[line] + j, &game->EA.width, &game->EA.height);
 		//verif si lallocation a fonctionner, sinon free_game;
 }

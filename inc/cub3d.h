@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/19 17:48:26 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:42:52 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # include <math.h>
 
 #ifndef WIDTH
-# define WIDTH 1024
+# define WIDTH 1900
 #endif
 
 #ifndef HEIGHT
-# define HEIGHT 512
+# define HEIGHT 1000
 #endif
 
 typedef struct s_data
@@ -55,14 +55,16 @@ typedef struct s_key
 	int		right;
 }				t_key;
 
-typedef struct s_img
+typedef struct s_image
 {
 	void	*img;
 	int		*addr;
 	int 	bpp;
     int 	size_line;
    	int 	endian;
-}				t_img;
+	int		width;
+	int		height;
+}				t_image;
 
 typedef struct s_ray
 {
@@ -95,17 +97,17 @@ typedef struct s_game
 	double		rotSpeed;
 	char		**map;
 	char		**p_map;
-	void		*NO;
-	void		*SO;
-	void		*WE;
-	void		*EA;
+	t_image		NO;
+	t_image		SO;
+	t_image		WE;
+	t_image		EA;
 	int			F;
 	int			C;
 	t_data		mlibx;
 	t_player	player;
 	t_key		key;
-	t_img		img;
-	t_img		img2;
+	t_image		img;
+	t_image		img2;
 	t_ray		ray;
 }				t_game;
 
@@ -129,6 +131,7 @@ char	*get_next_line(int fd);
 
 // init mlx
 void	init_mlx(t_game *game);
+int		close_win(t_game *game);
 
 // game
 void	cub3d(t_game *game);

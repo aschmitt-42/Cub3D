@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:53:12 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/19 23:52:10 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:34:22 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,32 @@
 
 int key_press(int keycode, t_game *game)
 {
-	printf("press %f\n", game->player.posY);
-	if (keycode == 122)
+	if (keycode == 119)
 		game->key.z = 1;
 	else if (keycode == 115)
 		game->key.s = 1;
 	else if (keycode == 100)
 		game->key.d = 1;
-	else if (keycode == 113)
+	else if (keycode == 97)
 		game->key.q = 1;
 	else if (keycode == 65361)
 		game->key.left = 1;
 	else if (keycode == 65363)
 		game->key.right = 1;
+	else if (keycode == 65307)
+		close_win(game);
 	return (0);
 }
 
 int		key_release(int keycode, t_game *game)
 {
-	if (keycode == 122)
+	if (keycode == 119)
 		game->key.z = 0;
 	else if (keycode == 115)
 		game->key.s = 0;
 	else if (keycode == 100)
 		game->key.d = 0;
-	else if (keycode == 113)
+	else if (keycode == 97)
 		game->key.q = 0;
 	else if (keycode == 65361)
 		game->key.left = 0;

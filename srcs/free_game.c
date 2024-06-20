@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/19 18:15:29 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:43:00 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	game_construct(t_game *game)
 	game->height = HEIGHT;
 	game->C = 0;
 	game->F = 0;
-	game->NO = NULL;
-	game->SO = NULL;
-	game->WE = NULL;
-	game->EA = NULL;
+	game->NO.img = NULL;
+	game->SO.img = NULL;
+	game->WE.img = NULL;
+	game->EA.img = NULL;
 	game->player.dirX = 0;
 	game->player.dirY = 0;
 	game->player.planeX = 0;
@@ -86,14 +86,14 @@ void	free_map(t_game *game, int line)
 
 void	free_mlx(t_game *game)
 {
-	if (game->EA)
-		mlx_destroy_image(game->mlibx.mlx_ptr, game->EA);
-	if (game->NO)
-		mlx_destroy_image(game->mlibx.mlx_ptr, game->NO);
-	if (game->SO)
-		mlx_destroy_image(game->mlibx.mlx_ptr, game->SO);
-	if (game->WE)
-		mlx_destroy_image(game->mlibx.mlx_ptr, game->WE);
+	if (game->EA.img)
+		mlx_destroy_image(game->mlibx.mlx_ptr, game->EA.img);
+	if (game->NO.img)
+		mlx_destroy_image(game->mlibx.mlx_ptr, game->NO.img);
+	if (game->SO.img)
+		mlx_destroy_image(game->mlibx.mlx_ptr, game->SO.img);
+	if (game->WE.img)
+		mlx_destroy_image(game->mlibx.mlx_ptr, game->WE.img);
 	if (game->mlibx.win_ptr)
 		mlx_destroy_window(game->mlibx.mlx_ptr, game->mlibx.win_ptr);
 	if (game->mlibx.mlx_ptr)

@@ -158,9 +158,9 @@ int	play(t_game *game)
 		if(worldMap[x][y] == 0)
 			game->player.posY -= game->player.dirX * game->moveSpeed;
 	}
-	// t_img tmp = game->img;
-	// game->img = game->img2;
-	// game->img2 = tmp;
+	t_image tmp = game->img;
+	game->img = game->img2;
+	game->img2 = tmp;
 }
 
 void	draw(t_game *game)
@@ -284,21 +284,18 @@ void	draw(t_game *game)
 			color = create_trgb(0, n, n, n);
 		else
 			color = create_trgb(0, n, n, 0);
-		//give x and y sides different brightness
-		// if (side == 1)
-		// 	color = color / 2;
 
 		//draw the pixels of the stripe as a vertical line
-		for (int y = 0; y < screenHeight; y++)
-		{
-			if (y < drawStart)
-				mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, x, y, sol);
-			else if (y > drawEnd)
-				mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, x, y, plafond);
-			else
-				mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, x, y, color);
-		}
-		/*
+		// for (int y = 0; y < screenHeight; y++)
+		// {
+		// 	if (y < drawStart)
+		// 		mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, x, y, sol);
+		// 	else if (y > drawEnd)
+		// 		mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, x, y, plafond);
+		// 	else
+		// 		mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, x, y, color);
+		// }
+		
 		
 		int test;
 		for (int y = 0; y < screenHeight; y++)
@@ -312,8 +309,6 @@ void	draw(t_game *game)
 				*(game->img.addr + test) = color;
 		}
 		mlx_put_image_to_window(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->img.img, 0, 0);
-
-		*/
 		// put_pixel_to_image(game->img.addr, x, y, sol, game->img.size_line, game->img.bpp); // data[y * size_line / 4 + game->player.dirX] = sol; // mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, x, y, sol);
 			
     }

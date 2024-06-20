@@ -6,7 +6,7 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/06/19 23:47:50 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/06/20 17:25:59 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,14 @@ LIBFT_DIR	= libft_functions/
 OBJ_DIR		= obj/
 
 CC 			= gcc
-# CFLAGS 		= -Wall -Wextra -Werror -g3 -I
-CFLAGS 		= -I
+CFLAGS 		= -Wall -Wextra -Werror -g3 -I
+#CFLAGS 		= -I
 LDFLAGS 	= -Lminilibx/mlx_Linux -Lminilibx/mlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm
 LIB 		= inc/ml/libmlx.a inc/ml/libmlx_Linux.a
 RM			= rm -f
 
 SRC 		= $(SRC_DIR)main.c \
 			  $(SRC_DIR)free_game.c \
-			  $(SRC_DIR)render_frame.c \
 			  $(SRC_DIR)dda.c \
 			  $(SRC_DIR)display.c \
 			  $(SRC_DIR)draw.c \

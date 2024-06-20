@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/19 16:08:22 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:41:04 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,14 @@ char	**handle_header(t_game *game)
 	return (game->map + line);
 }
 
+void	get_img_addr(t_game *game)
+{
+	game->NO.addr = (int *)(mlx_get_data_addr(game->NO.img, &game->NO.bpp, &game->NO.size_line, &game->NO.endian));
+	game->SO.addr = (int *)(mlx_get_data_addr(game->SO.img, &game->SO.bpp, &game->SO.size_line, &game->SO.endian));
+	game->EA.addr = (int *)(mlx_get_data_addr(game->EA.img, &game->EA.bpp, &game->EA.size_line, &game->EA.endian));
+	game->WE.addr = (int *)(mlx_get_data_addr(game->WE.img, &game->WE.bpp, &game->WE.size_line, &game->WE.endian));
+}
+
 void	map_filler(char *file, t_game *game)
 {
 	int		i;
@@ -83,8 +91,9 @@ void	map_filler(char *file, t_game *game)
 	}
 	close(fd);
 	game->map = handle_header(game);//rempli toutes les infos du headers, et free les string associe, puis renvoie game->map + header_len
-	print_map(game->map);
+	// print_map(game->map);
 	map_verif(game);
+	get_img_addr(game);
 }
 
 void	init_map(char *file, t_game *game)

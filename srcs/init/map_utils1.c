@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:42:26 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/01 21:27:26 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:08:14 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ char	**ft_malloc_map(t_game *game, char *file)
 	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
+	{
+		printf("err");
 		free_game(game, 1);
+	}
 	temp = get_next_line(fd);
 	while (temp)
 	{
@@ -106,7 +109,7 @@ int	still_header(t_game *game, size_t line)
 	*/
 	if (!game->map || !game->map[line])
 		return (0);
-	if (game->C && game->F && game->NO && game->SO && game->WE && game->EA && game->map[line][0] != '\n')
+	if (game->C && game->F && game->NO.img && game->SO.img && game->WE.img && game->EA.img && game->map[line][0] != '\n')
 		return (0);
 	return (1);//verifier si toutes les infos du header sont remplie, et si la ligne nest pas juste un /n, alors header est finit
 }
