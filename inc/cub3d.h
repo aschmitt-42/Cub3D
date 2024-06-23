@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/20 17:42:52 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/24 01:11:21 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,18 @@ typedef struct s_ray
 	int		x;
 }				t_ray;
 
+typedef struct s_minimap
+{
+	int		enable;
+	int		i;
+	int		width;
+	int		height;
+	int		max;
+	int		min;
+	int		pos;
+	t_image	img;
+}		t_minimap;
+
 typedef struct s_game
 {
 	int			width;
@@ -97,6 +109,8 @@ typedef struct s_game
 	double		rotSpeed;
 	char		**map;
 	char		**p_map;
+	int			map_y_scale;
+	int			frame;
 	t_image		NO;
 	t_image		SO;
 	t_image		WE;
@@ -109,6 +123,7 @@ typedef struct s_game
 	t_image		img;
 	t_image		img2;
 	t_ray		ray;
+	t_minimap	minimap;
 }				t_game;
 
 // construct
@@ -119,6 +134,7 @@ void	free_map(t_game *game, int line);
 void 	free_game(t_game *game, int error_code);
 
 // init map
+void	get_y_scale_map(t_game *game);
 void	create_color_FC(t_game *game, int line, int j, int i);
 void	open_texture(t_game *game, size_t line);
 void 	del_newline(char *line);
@@ -137,9 +153,10 @@ int		close_win(t_game *game);
 void	cub3d(t_game *game);
 
 
-
+void	mini_map(t_game *game);
 int		render_next_frame(t_game *game);
 size_t	ft_strlen(const char *str);
+int		is_wspace(char c);
 char	*ft_strdup(const char *src);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strchr(const char *str, int c);
@@ -159,5 +176,6 @@ void    draw(t_game *game);
 void	performe_dda(t_game *game);
 void	init_vecteur(t_game *game);
 void	display(t_game *game);
+int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
 
 #endif

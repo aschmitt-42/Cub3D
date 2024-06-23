@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:08:02 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/01 17:58:25 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:16:28 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,15 @@ int	ft_isdigit(int c)
 }
 
 
-int	ft_iswspace(char c)
+int	create_rgb(unsigned char r, unsigned char g, unsigned char b)
+{
+	return (*(int *)(unsigned char [3]){b, g, r});
+}
+
+
+int	is_wspace(char c)
 {
 	if (c == 32 || c == 9 || c == 13 || c == 10)
 		return (1);
 	return (0);
-}
-
-int	create_rgb(unsigned char r, unsigned char g, unsigned char b)
-{
-	return (*(int *)(unsigned char [3]){b, g, r});
 }

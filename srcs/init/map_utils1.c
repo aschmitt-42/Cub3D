@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:42:26 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/20 17:08:14 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:17:19 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void del_newline(char *line)
 	while (line[i])
 		i++;
 	i--;
-	while (line[i] == '\n' || ft_iswspace(line[i]))
+	while (line[i] == '\n' || is_wspace(line[i]))
 	{
 		line[i] = '\0';
 		i--;

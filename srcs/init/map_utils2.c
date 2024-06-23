@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 20:58:16 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/20 17:26:10 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/23 22:41:44 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	create_color_FC(t_game *game, int line, int j, int i)
 
 	while (i < 3)
 	{
-		while (ft_iswspace(game->map[line][j]))
+		while (is_wspace(game->map[line][j]))
 			j++;
 		if (ft_isdigit(game->map[line][j]))
 		{
@@ -27,7 +27,7 @@ void	create_color_FC(t_game *game, int line, int j, int i)
 		}
 		else
 			free_game(game, 1);
-		while (ft_iswspace(game->map[line][j]))
+		while (is_wspace(game->map[line][j]))
 			j++;
 		while (game->map[line][j] && game->map[line][j - 1] != ',')//revoir la condition darret
 			j++;
@@ -43,7 +43,7 @@ void	open_texture(t_game *game, size_t line)
 	int	j;
 
 	j = 2;
-	while (ft_iswspace(game->map[line][j]))
+	while (is_wspace(game->map[line][j]))
 		j++;
 	if (j == 2)
 		free_game(game, 1);
@@ -61,4 +61,14 @@ void	open_texture(t_game *game, size_t line)
 		game->EA.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr, 
 			game->map[line] + j, &game->EA.width, &game->EA.height);
 		//verif si lallocation a fonctionner, sinon free_game;
+}
+
+void	get_y_scale_map(t_game *game)
+{
+	size_t	i;
+	
+	i = 0;
+	while(game->map[i])
+		i++;
+	game->map_y_scale = i;
 }

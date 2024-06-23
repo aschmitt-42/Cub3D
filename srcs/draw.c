@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:58:44 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/19 18:19:48 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/24 01:16:26 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ void    init_value(t_game *game)
     init_sidedist(game);
 }
 
+# include <sys/types.h>
+# include <sys/wait.h>
+
 void	draw(t_game *game)
 {
     game->ray.x = -1;
@@ -64,5 +67,16 @@ void	draw(t_game *game)
         init_value(game);
         performe_dda(game);
         display(game);
+		if (game->minimap.enable)
+		{
+			if (game->frame % 500 == 0 || game->frame == 0)
+			{
+				mini_map(game);
+				game->frame = 0;
+				mlx_put_image_to_window(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->minimap.img.img, 0, 0);
+			}
+			//mlx_put_image_to_window(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->minimap.img.img, 0, 0);
+		}
+		game->frame++;
     }
 }

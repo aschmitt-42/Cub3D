@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
+#    By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2024/06/06 14:09:15 by aschmitt         ###   ########.fr        #
-=======
-#    Updated: 2024/06/20 17:25:59 by aschmitt         ###   ########.fr        #
->>>>>>> ad5ab5d16872c08f5e7d9e024abe918972852ab4
+#    Updated: 2024/06/23 15:08:49 by eboumaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +20,8 @@ OBJ_DIR		= obj/
 
 CC 			= gcc
 CFLAGS 		= -Wall -Wextra -Werror -g3 -I
-<<<<<<< HEAD
-LDFLAGS 	= -Lminilibx/mlx_Linux -Lminilibx/mlx -L/usr/lib -Imlx_linux -lXext -lX11
-=======
 #CFLAGS 		= -I
 LDFLAGS 	= -Lminilibx/mlx_Linux -Lminilibx/mlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm
->>>>>>> ad5ab5d16872c08f5e7d9e024abe918972852ab4
 LIB 		= inc/ml/libmlx.a inc/ml/libmlx_Linux.a
 RM			= rm -f
 
@@ -37,6 +29,7 @@ SRC 		= $(SRC_DIR)main.c \
 			  $(SRC_DIR)free_game.c \
 			  $(SRC_DIR)dda.c \
 			  $(SRC_DIR)display.c \
+			  $(SRC_DIR)mini_map.c \
 			  $(SRC_DIR)draw.c \
 			  $(SRC_DIR)key.c \
 			  $(SRC_DIR)$(INIT_DIR)vecteur_init.c \

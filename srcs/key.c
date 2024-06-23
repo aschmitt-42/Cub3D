@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:53:12 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/20 15:34:22 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:09:15 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 int key_press(int keycode, t_game *game)
 {
-	if (keycode == 119)
+	printf("%d\n", keycode);
+	if (keycode == 109 && game->minimap.enable)
+		game->minimap.enable = 0;
+	else if (keycode == 109)
+		game->minimap.enable = 1;
+	else if (keycode == 119)
 		game->key.z = 1;
 	else if (keycode == 115)
 		game->key.s = 1;

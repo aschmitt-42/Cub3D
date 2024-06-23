@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/20 16:41:04 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/23 22:37:09 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	map_filler(char *file, t_game *game)
 	close(fd);
 	game->map = handle_header(game);//rempli toutes les infos du headers, et free les string associe, puis renvoie game->map + header_len
 	// print_map(game->map);
+	get_y_scale_map(game);
 	map_verif(game);
 	get_img_addr(game);
 }
