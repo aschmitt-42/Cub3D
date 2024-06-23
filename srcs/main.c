@@ -6,19 +6,11 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:36:55 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/05 16:29:23 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:08:08 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	cub3d(t_game *game)
-{
-	(void)game;
-	render_next_frame(game);
-	// mlx_loop_hook(game->mlibx.mlx_ptr, render_next_frame, &game);
-	mlx_loop(game->mlibx.mlx_ptr);
-}
 
 void	init(t_game *game, char **av)
 {
@@ -37,7 +29,6 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (write(2, "Error\nNo .cub file specified\n", 29), 1);
 	init(&game, av);
-	cub3d(&game);
 	free_game(&game, 10);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:14:43 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/05 16:31:07 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:30:58 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,18 @@ int	close_win(t_game *game)
 	return (0);
 }
 
-int	keybind(int keycode, t_game *game)
-{
-	//ft_printf("Keypressed : %d\n", keycode);
-	if (keycode == 65307)
-		close_win(game);
-	if (keycode == 115 || keycode == 119
-		|| keycode == 97 || keycode == 100)
-		(void)game;//cam
-	if (keycode == 65363 || keycode == 65361 ||
-		keycode == 65364 || keycode == 65362)
-		(void)game;//mouv
-	return (0);
-}
-
-int	mouse_hook(int keycode, t_game *game)
-{
-	printf("MOUSE : %d\n", keycode);
-	(void)game;
-	return (0);
-}
 
 void	init_mlx(t_game *game)
 {
 	game->mlibx.win_ptr = mlx_new_window
-		(game->mlibx.mlx_ptr, WIDTH, HEIGHT, "Cub3D");
+		(game->mlibx.mlx_ptr, game->width, game->height, "Cub3D");
 	if (!game->mlibx.win_ptr)
 		free_game(game, 1);
-	mlx_hook(game->mlibx.win_ptr, 2, 1L << 0, keybind, game);
+	init_vecteur(game);
+	// draw(game);
 	mlx_hook(game->mlibx.win_ptr, 17, 1L << 0, close_win, game);
-	mlx_mouse_hook(game->mlibx.win_ptr, mouse_hook, game);
+	mlx_hook(game->mlibx.win_ptr, 2, 1L << 0, key_press, game);
+	mlx_loop_hook(game->mlibx.mlx_ptr, play, game);
+	mlx_hook(game->mlibx.win_ptr, 3, 1L << 1, key_release, game);
+	mlx_loop(game->mlibx.mlx_ptr);
 }

@@ -6,7 +6,11 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2024/06/06 14:09:15 by aschmitt         ###   ########.fr        #
+=======
+#    Updated: 2024/06/20 17:25:59 by aschmitt         ###   ########.fr        #
+>>>>>>> ad5ab5d16872c08f5e7d9e024abe918972852ab4
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +24,22 @@ OBJ_DIR		= obj/
 
 CC 			= gcc
 CFLAGS 		= -Wall -Wextra -Werror -g3 -I
+<<<<<<< HEAD
 LDFLAGS 	= -Lminilibx/mlx_Linux -Lminilibx/mlx -L/usr/lib -Imlx_linux -lXext -lX11
+=======
+#CFLAGS 		= -I
+LDFLAGS 	= -Lminilibx/mlx_Linux -Lminilibx/mlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm
+>>>>>>> ad5ab5d16872c08f5e7d9e024abe918972852ab4
 LIB 		= inc/ml/libmlx.a inc/ml/libmlx_Linux.a
 RM			= rm -f
 
 SRC 		= $(SRC_DIR)main.c \
 			  $(SRC_DIR)free_game.c \
-			  $(SRC_DIR)render_frame.c \
+			  $(SRC_DIR)dda.c \
+			  $(SRC_DIR)display.c \
+			  $(SRC_DIR)draw.c \
+			  $(SRC_DIR)key.c \
+			  $(SRC_DIR)$(INIT_DIR)vecteur_init.c \
 			  $(SRC_DIR)$(INIT_DIR)map_init.c \
 			  $(SRC_DIR)$(INIT_DIR)mlx_init.c \
 			  $(SRC_DIR)$(INIT_DIR)map_utils1.c \
@@ -34,6 +47,10 @@ SRC 		= $(SRC_DIR)main.c \
 			  $(SRC_DIR)$(LIBFT_DIR)gnl.c \
 			  $(SRC_DIR)$(LIBFT_DIR)utils1.c \
 			  $(SRC_DIR)$(LIBFT_DIR)utils2.c 
+
+
+# $(SRC_DIR)no_texture.c
+
 
 OBJ 		= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 
