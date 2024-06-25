@@ -48,33 +48,6 @@ respecte les règles de carte.
 
 https://cdn.intra.42.fr/pdf/pdf/115748/fr.subject.pdf
 
->> Position joueur debut avec direction
->> couleur sol et plafond
->> resolution
 
-init vecteur direction avec N W E S ainsi que vecteur plan
 
-	ray.dirx = 0;
-	ray.diry = 0;
-	ray.planx = 0;
-	ray.plany = 0;
-    if (depart == 'N')
-	{
-		ray.dirx = -1;
-		ray.plany = 0.66;
-	}
-	if (depart == 'S')
-	{
-		ray.dirx = 1;
-		ray.plany = -0.66;
-	}
-	if (depart == 'E')
-	{
-		ray.diry = 1;
-		ray.planx = 0.66;
-	}
-	if (depart == 'W')
-	{
-		ray.diry = -1;
-		ray.planx = -0.66;
-	}
+>> resolution width et height
