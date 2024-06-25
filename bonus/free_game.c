@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/25 16:04:29 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:19:58 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	print_error(int code)
 	else if (code == 9)
 		printf("Error\n\n");
 	else if (code == 10)
-		printf("Closing Cub3d\n");
+		printf("Closing Cub3d bonus\n");
 }
 
 void	game_construct(t_game *game)
@@ -98,6 +98,8 @@ void	free_mlx(t_game *game)
 		mlx_destroy_image(game->mlibx.mlx_ptr, game->WE.img);
 	if (game->img.img)
 		mlx_destroy_image(game->mlibx.mlx_ptr, game->img.img);
+	if (game->minimap.img.img)
+		mlx_destroy_image(game->mlibx.mlx_ptr, game->minimap.img.img);
 	if (game->mlibx.win_ptr)
 		mlx_destroy_window(game->mlibx.mlx_ptr, game->mlibx.win_ptr);
 	if (game->mlibx.mlx_ptr)
