@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:48:43 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/25 16:08:34 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:38:35 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	display(t_game *game)
 	int		texY;
 	int		color;
 
-	t_image texture = game->NO;
+	t_image texture = game->SO;
 	if (game->ray.side == 1)
-		texture = game->EA;
+		texture = game->NO;
 	 
 	if (game->ray.side == 0)
 		wallX = game->player.posY + game->ray.perpWallDist * game->ray.rayDirY;
@@ -50,8 +50,8 @@ void	display(t_game *game)
 	texPos = (game->ray.drawStart - game->ray.h / 2 + game->ray.lineHeight / 2) * step;
 
 	int y = -1;
-	int plafond = create_trgb(0, 64,0,64);
-	int sol = create_trgb(0, 192,0,192);
+	int plafond = game->F;
+	int sol = game->C;
 	
 	while (++y < game->height)
 	{
