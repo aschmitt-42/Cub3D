@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/24 01:13:34 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:04:29 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	game_construct(t_game *game)
 	game->key.left = 0;
 	game->key.right = 0;
 	game->frame = 0;
+	game->img.img = NULL;
 }
 
 // 0 pour toute la map, sinon le nombre de ligne a free
@@ -95,6 +96,8 @@ void	free_mlx(t_game *game)
 		mlx_destroy_image(game->mlibx.mlx_ptr, game->SO.img);
 	if (game->WE.img)
 		mlx_destroy_image(game->mlibx.mlx_ptr, game->WE.img);
+	if (game->img.img)
+		mlx_destroy_image(game->mlibx.mlx_ptr, game->img.img);
 	if (game->mlibx.win_ptr)
 		mlx_destroy_window(game->mlibx.mlx_ptr, game->mlibx.win_ptr);
 	if (game->mlibx.mlx_ptr)

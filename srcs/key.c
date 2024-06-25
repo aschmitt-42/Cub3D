@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:53:12 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/23 20:09:15 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:00:47 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 int key_press(int keycode, t_game *game)
 {
-	printf("%d\n", keycode);
-	if (keycode == 109 && game->minimap.enable)
-		game->minimap.enable = 0;
-	else if (keycode == 109)
-		game->minimap.enable = 1;
-	else if (keycode == 119)
+	
+	if (keycode == 119)
 		game->key.z = 1;
 	else if (keycode == 115)
 		game->key.s = 1;
@@ -53,10 +49,10 @@ int		key_release(int keycode, t_game *game)
 	return (0);
 }
 
-void    move_lr(t_game *game)
+int	move_lr(t_game *game)
 {
-	double oldDirX;
-	double oldPlaneX;
+	double	oldDirX;
+	double	oldPlaneX;
 
 	if (game->key.left)
 	{
@@ -66,6 +62,7 @@ void    move_lr(t_game *game)
 		oldPlaneX = game->player.planeX;
 		game->player.planeX = game->player.planeX * cos(-game->rotSpeed) - game->player.planeY * sin(-game->rotSpeed);
 		game->player.planeY = oldPlaneX * sin(-game->rotSpeed) + game->player.planeY * cos(-game->rotSpeed);
+		return (1);
 	}
 	if (game->key.right)
 	{
@@ -75,71 +72,72 @@ void    move_lr(t_game *game)
 		oldPlaneX = game->player.planeX;
 		game->player.planeX = game->player.planeX * cos(game->rotSpeed) - game->player.planeY * sin(game->rotSpeed);
 		game->player.planeY = oldPlaneX * sin(game->rotSpeed) + game->player.planeY * cos(game->rotSpeed);
+		return (1);
 	}
+	return (0);
 }
 
-void    move_updown(t_game *game)
+int    move_updown(t_game *game)
 {
-	int x;
-	int y;
+	int n;
 
 	if (game->key.z)
 	{
-		x = game->player.posX + game->player.dirX * game->moveSpeed;
-		y = game->player.posY;
-		if(game->map[x] && game->map[x][y] == '0')
+		n = game->player.posX + game->player.dirX * game->moveSpeed;
+		if(game->map[n][(int)(game->player.posY)] == '0')
 			game->player.posX += game->player.dirX * game->moveSpeed;
-		x =	game->player.posX;
-		y = game->player.posY + game->player.dirY * game->moveSpeed;
-		if(game->map[x] && game->map[x][y] == '0')
+		n = game->player.posY + game->player.dirY * game->moveSpeed;
+		if(game->map[(int)(game->player.posX)][n] == '0')
 			game->player.posY += game->player.dirY * game->moveSpeed;
+		return (1);
 	}
 	if (game->key.s)
 	{
-		x = game->player.posX - game->player.dirX * game->moveSpeed;
-		y = game->player.posY;
-		if(game->map[x] && game->map[x][y] == '0')
+		n = game->player.posX - game->player.dirX * game->moveSpeed;
+		if(game->map[n][(int)(game->player.posY)] == '0')
 			game->player.posX -= game->player.dirX * game->moveSpeed;
-		x =	game->player.posX;
-		y = game->player.posY - game->player.dirY * game->moveSpeed;
-		if(game->map[x] && game->map[x][y] == '0')
+		n = game->player.posY - game->player.dirY * game->moveSpeed;
+		if(game->map[(int)(game->player.posX)][n] == '0')
 			game->player.posY -= game->player.dirY * game->moveSpeed;
+		return (1);
 	}
+	return (0);
 }
-void	move_side(t_game *game)
+int	move_side(t_game *game)
 {
-	int x;
-	int y;
+	int n;
 
 	if (game->key.d)
 	{
-		x = game->player.posX - game->player.dirY * (game->moveSpeed * 2);
-		y = game->player.posY;
-		if(game->map[x][y] == '0')
+		n = game->player.posX - game->player.dirY * (game->moveSpeed * 2);
+		if(game->map[n][(int)(game->player.posY)] == '0')
 			game->player.posX -= game->player.dirY * game->moveSpeed;
-		x = game->player.posX;
-		y = game->player.posY + game->player.dirX * (game->moveSpeed * 2);
-		if(game->map[x][y] == '0')
+		n = game->player.posY + game->player.dirX * (game->moveSpeed * 2);
+		if(game->map[(int)(game->player.posX)][n] == '0')
 			game->player.posY += game->player.dirX * game->moveSpeed;
+		return (1);
 	}
 	if (game->key.q)
 	{
-		x = game->player.posX + game->player.dirY * (game->moveSpeed * 2);
-		y = game->player.posY;
-		if(game->map[x][y] == '0')
+		n = game->player.posX + game->player.dirY * (game->moveSpeed * 2);
+		if(game->map[n][(int)(game->player.posY)] == '0')
 			game->player.posX += game->player.dirY * game->moveSpeed;
-		x = game->player.posX;
-		y = game->player.posY - game->player.dirX * (game->moveSpeed * 2);
-		if(game->map[x][y] == '0')
+		n = game->player.posY - game->player.dirX * (game->moveSpeed * 2);
+		if(game->map[(int)(game->player.posX)][n] == '0')
 			game->player.posY -= game->player.dirX * game->moveSpeed;
+		return (1);
 	}
+	return (0);
 }
 
 int	play(t_game *game)
 {
-	draw(game);
-	move_lr(game);
-	move_updown(game);
-	move_side(game);
+	int	n;
+
+	n = move_lr(game);
+	n = move_updown(game) || n;
+	n = move_side(game) || n;
+	if (n)
+		draw(game);
 	return (0);
 }

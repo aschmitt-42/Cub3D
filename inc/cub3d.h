@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/24 01:11:21 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:43:04 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # include <math.h>
 
 #ifndef WIDTH
-# define WIDTH 1900
+# define WIDTH 1920
 #endif
 
 #ifndef HEIGHT
-# define HEIGHT 1000
+# define HEIGHT 1080
 #endif
 
 typedef struct s_data
@@ -121,7 +121,6 @@ typedef struct s_game
 	t_player	player;
 	t_key		key;
 	t_image		img;
-	t_image		img2;
 	t_ray		ray;
 	t_minimap	minimap;
 }				t_game;

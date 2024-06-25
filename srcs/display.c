@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:48:43 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/24 00:59:12 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:08:34 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,70 +17,54 @@ int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char
 	return (*(int *)(unsigned char [4]){b, g, r, t});
 }
 
+void	pixel_put(t_game *game, int x, int y, int color)
+{
+	int	test = y * game->img.size_line / 4 + x;
+	*(game->img.addr + test) = color;
+}
+
 void	display(t_game *game)
 {
+	double	wallX;  //where exactly the wall was hit
+	double	step;
+	double	texPos;
+	int		texX;
+	int		texY;
+	int		color;
+
 	t_image texture = game->NO;
 	if (game->ray.side == 1)
 		texture = game->EA;
-	double wallX; //where exactly the wall was hit
+	 
 	if (game->ray.side == 0)
 		wallX = game->player.posY + game->ray.perpWallDist * game->ray.rayDirY;
 	else
 		wallX = game->player.posX + game->ray.perpWallDist * game->ray.rayDirX;
 	wallX -= floor((wallX));
-	int texX = (int)(wallX * (double)(texture.width));
+	texX = (int)(wallX * (double)(texture.width));
 	if(game->ray.side == 0 && game->ray.rayDirX > 0)
 		texX = texture.width - texX - 1;
 	if(game->ray.side == 1 && game->ray.rayDirY < 0)
 		texX = texture.width - texX - 1;
-	double step = 1.0 * texture.height / game->ray.lineHeight;
-	double texPos = (game->ray.drawStart - game->ray.h / 2 + game->ray.lineHeight / 2) * step;
+	step = 1.0 * texture.height / game->ray.lineHeight;
+	texPos = (game->ray.drawStart - game->ray.h / 2 + game->ray.lineHeight / 2) * step;
+
+	int y = -1;
 	int plafond = create_trgb(0, 64,0,64);
 	int sol = create_trgb(0, 192,0,192);
-	int	y = -1;
+	
 	while (++y < game->height)
 	{
 		if (y < game->ray.drawStart)
-			mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->ray.x, y, sol);
+			pixel_put(game, game->ray.x, y, sol);
 		else if (y > game->ray.drawEnd)
-			mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->ray.x, y, plafond);
+			pixel_put(game, game->ray.x, y, plafond);
 		else
 		{
-			int texY = (int)texPos & (texture.height - 1);
+			texY = (int)texPos & (texture.height - 1);
 			texPos += step;
-			int color = *(int *)((char *)texture.addr + (texY * texture.size_line + texX * (texture.bpp / 8)));
-			mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->ray.x, y, color);
+			color = *(int *)((char *)texture.addr + (texY * texture.size_line + texX * (texture.bpp / 8)));
+			pixel_put(game, game->ray.x, y, color);
 		}
 	}
 }
-
-	/*int n;
-	int color;
-	int	y;
-
-	if (game->ray.side == 1)
-		n = 127;
-	else
-		n = 255;
-	if (game->map[game->ray.mapX][game->ray.mapY] == '1')
-		color = create_trgb(0, n, 0, 0);
-	else if (game->map[game->ray.mapX][game->ray.mapY] == '2')
-		color = create_trgb(0, 0, n, 0);
-	else if (game->map[game->ray.mapX][game->ray.mapY] == '3')
-		color = create_trgb(0, 0, 0, n);
-	else if (game->map[game->ray.mapX][game->ray.mapY] == '4')
-		color = create_trgb(0, n, n, n);
-	else
-		color = create_trgb(0, n, n, 0);
-	int plafond = create_trgb(0, 64,0,64);
-	int sol = create_trgb(0, 192,0,192);
-	y = -1;
-	while (++y < game->height)
-	{
-		if (y < game->ray.drawStart)
-			mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->ray.x, y, sol);
-		else if (y > game->ray.drawEnd)
-			mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->ray.x, y, plafond);
-		else
-			mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->ray.x, y, color);
-	}*/
