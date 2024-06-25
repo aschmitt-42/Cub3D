@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 14:45:06 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/24 01:14:03 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:15:56 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	draw_border(t_game *game)
 	color = create_trgb(0, 255, 215, 46);
 	while (i <= game->minimap.width)
 	{
-		mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->minimap.width + 1, i, color);
-		mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->minimap.width + 2, i, color);
+		pixel_put(game, game->minimap.width + 1, i, color);
+		pixel_put(game, game->minimap.width + 2, i, color);
 		i++;
 	}
 	i = 0;
 	while (i <= game->minimap.width + 2)
 	{
-		mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, i, game->minimap.width + 1, color);
-		mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, i, game->minimap.width + 2, color);
+		pixel_put(game, i, game->minimap.width + 1, color);
+		pixel_put(game, i, game->minimap.width + 2, color);
 		i++;
 	}
 }
@@ -45,7 +45,6 @@ int	is_in_map(t_game *game, double x, double y)
 
 void	draw_map(t_game *game)
 {
-	int		result;
 	int		color;
 	int 	last_pos;
 	double	scale;
@@ -69,10 +68,8 @@ void	draw_map(t_game *game)
 			else
 				color = create_trgb(0, 220, 220, 220);
 			while (last_pos == (int)pos[0] && pixel[0] <= game->minimap.width)
-			{mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, pixel[0], pixel[1], color);
-
-				result = pixel[1] * game->img.size_line / 4 + pixel[0];
-				*(game->minimap.img.addr + result) = color;
+			{
+				pixel_put(game, pixel[0], pixel[1], color);
 				pos[0] += scale;
 				pixel[0]++;
 			}
@@ -91,5 +88,5 @@ void	mini_map(t_game *game)
 {
 	draw_border(game);
 	draw_map(game);
-	draw_player(game);
+	//draw_player(game);
 }
