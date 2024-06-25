@@ -3,27 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/23 22:37:09 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/26 00:58:59 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	pos_start(t_game *game)
+{
+	size_t	i;
+	size_t	j;
+
+	i = -1;
+	game->player.posX = -1;
+	while (game->map[++i])
+	{
+		j = -1;
+		while (game->map[i][++j])
+		{
+			if (game->map[i][j] == 'S' || game->map[i][j] == 'N' || game->map[i][j] == 'W' || game->map[i][j] == 'E')
+			{
+				if (game->player.posX != -1)
+					free_game(game, 7);
+				game->player.posX = i + 0.5;
+				game->player.posY = j + 0.5;
+				game->player.start = game->map[i][j];
+				game->map[i][j] = '0';
+			}
+		}
+	}
+	if (game->player.posX == -1)
+		free_game(game, 6);
+}
 
 void	map_verif(t_game *game)
 {
 	size_t	i;
 	size_t	j;
 
-	i = 0;
+	i = -1;
 	if (!game->map)
 		free_game(game, 5);
-	while (game->map[i])
+	pos_start(game);
+	while (game->map[++i])
 	{
-		j = 0;
-		while (game->map[i][j])
+		j = -1;
+		while (game->map[i][++j])
 		{
 			if (game->map[i][j] == '0')
 			{
@@ -35,9 +63,7 @@ void	map_verif(t_game *game)
 					|| !(game->map[i - 1][j] == '1' || game->map[i - 1][j] == '0'))
 					free_game(game, 4);
 			}
-			j++;
 		}
-		i++;
 	}
 }
 

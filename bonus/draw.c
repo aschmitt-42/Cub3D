@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:58:44 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/25 17:12:56 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/26 01:13:33 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ void	draw(t_game *game)
         display(game);
     }
 	mini_map(game);
-	mlx_put_image_to_window(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->img.img, 0, 0);
+	mlx_put_image_to_window(game->mlibx.mlx_ptr, game->mlibx.win_ptr, game->img.img, 0, 0);	
 }
