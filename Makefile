@@ -6,7 +6,7 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/06/25 16:54:40 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/06/26 17:45:03 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJ_DIR		= obj/
 OBJ_DIR_BONUS = obj_bonus/
 
 CC 			= gcc
-CFLAGS 		= -Wall -Wextra -Werror -g3 -I
+CFLAGS 		= -Wall -Wextra -Werror -I
 LDFLAGS 	= -Lminilibx/mlx_Linux -Lminilibx/mlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm
 LIB 		= inc/ml/libmlx.a inc/ml/libmlx_Linux.a
 RM			= rm -f

@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/26 00:59:38 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:45:06 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_error(int code)
 {
 	if (code == 1)
-		printf("Error\nError\nMlx init failed\n");
+		printf("Error\nMlx init failed\n");
 	if (code == 2)
 		printf("Error\nOpen failed\n");
 	else if (code == 3)
@@ -29,7 +29,7 @@ void	print_error(int code)
 	else if (code == 7)
 		printf("Error\nSeveral starting positions\n");
 	else if (code == 8)
-		printf("Error\n\n");
+		printf("Error\nInvalide : is a directory\n");
 	else if (code == 9)
 		printf("Error\n\n");
 	else if (code == 10)
