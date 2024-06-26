@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 14:45:06 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/25 17:15:56 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:12:52 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,77 @@ void	draw_map(t_game *game)
 	}
 }
 
-void	draw_player(t_game *game)
-{
-	(void)game;
+void draw_line(t_game *game, int x0, int y0, int x1, int y1) {
+    int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+    int dy = abs(y1 - y0), sy = y0 < y1 ? 1 : -1; 
+    int err = (dx > dy ? dx : -dy) / 2, e2;
+	
+	pixel_put(game, x0, y0, 0);	
+	//put_pixel(x0, y0);
+
+    if (x0 == x1 && y0 == y1) return;
+
+    e2 = err;
+    if (e2 > -dx) {
+        err -= dy;
+        x0 += sx;
+    }
+    if (e2 < dy) {
+        err += dx;
+        y0 += sy;
+    }
+    draw_line(game, x0, y0, x1, y1); // Recursive call
 }
+
+void draw_player(t_game *game) 
+{
+    // Define the points of the triangle
+    int size = 20;
+    
+    // Center of the triangle
+    int cx = game->minimap.width / 2;
+    int cy = game->minimap.width / 2;
+    
+    // Convert rotation from 0 to 1 into radians (0 to 2*PI)
+    float angle = game->player.dirX * M_PI;
+
+    // Calculate the sine and cosine of the angle for rotation
+    float cos_angle = cos(angle);
+    float sin_angle = sin(angle);
+
+    // Define the points of the triangle in local coordinates
+    int x1 = 0;
+    int y1 = -size / 2;
+
+    int x2 = size / 2;
+    int y2 = size / 2;
+
+    int x3 = -size / 2;
+    int y3 = size / 2;
+
+    // Apply rotation and translate to the center of the screen
+    int px1 = cx + (int)(x1 * cos_angle - y1 * sin_angle);
+    int py1 = cy + (int)(x1 * sin_angle + y1 * cos_angle);
+
+    int px2 = cx + (int)(x2 * cos_angle - y2 * sin_angle);
+    int py2 = cy + (int)(x2 * sin_angle + y2 * cos_angle);
+
+    int px3 = cx + (int)(x3 * cos_angle - y3 * sin_angle);
+    int py3 = cy + (int)(x3 * sin_angle + y3 * cos_angle);
+
+    // Draw the triangle as lines between these points
+    draw_line(game, px1, py1, px2, py2); // First side
+    draw_line(game, px2, py2, px3, py3); // Second side
+    draw_line(game, px3, py3, px1, py1); // Third side
+}
+
+// Bresenham's line algorithm to draw a line between two points recursively
+
+// Bresenham's line algorithm to draw a line between two points recursively
 
 void	mini_map(t_game *game)
 {
 	draw_border(game);
 	draw_map(game);
-	//draw_player(game);
+	draw_player(game);
 }

@@ -4,8 +4,9 @@ EA assets/texture/red.xpm
 WE assets/texture/purplestone.xpm
 
 
-F 105,96,96
-C 0,201,226
+F 220, 100,0
+C 225, 30,0
+
 
       1111111111111
      10000000000E001   11111111

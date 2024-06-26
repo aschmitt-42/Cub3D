@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:14:43 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/25 17:12:39 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:15:23 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	init_minimap(t_game *game)
 {
 	game->minimap.enable = 0;
 	game->minimap.width = game->width / 8;
-	game->minimap.img.img = mlx_new_image(game->mlibx.mlx_ptr, game->minimap.width, game->minimap.width); 
-	game->minimap.img.addr = (int *)mlx_get_data_addr(game->minimap.img.img, &game->minimap.img.bpp, &game->minimap.img.size_line, &game->minimap.img.endian);
 }//verif et free
 
 void	init_mlx(t_game *game)

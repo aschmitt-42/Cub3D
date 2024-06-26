@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:42:26 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/23 17:17:19 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:56:11 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,11 @@ char	**ft_malloc_map(t_game *game, char *file)
 	int		fd;
 
 	i = 0;
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-	{
-		printf("err");
-		free_game(game, 1);
-	}
+	
+	if ((fd = open(file, O_DIRECTORY) != -1))
+		free_game(game, 8);
+	if ((fd = open(file, O_RDONLY)) == -1)
+		free_game(game, 2);
 	temp = get_next_line(fd);
 	while (temp)
 	{

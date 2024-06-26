@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:53:12 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/25 16:00:47 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:22:35 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,27 @@
 
 int key_press(int keycode, t_game *game)
 {
-	
-	if (keycode == 119)
+	if (keycode == 109 && game->minimap.enable == 1)
+	{
+		game->minimap.enable = 0;
+		draw(game);
+	}
+	else if (keycode == 109)
+	{
+		game->minimap.enable = 1;
+		draw(game);
+	}
+	else if (keycode == 119)
 		game->key.z = 1;
 	else if (keycode == 115)
 		game->key.s = 1;
-	else if (keycode == 100)
-		game->key.d = 1;
 	else if (keycode == 97)
+		game->key.d = 1;
+	else if (keycode == 100)
 		game->key.q = 1;
-	else if (keycode == 65361)
-		game->key.left = 1;
 	else if (keycode == 65363)
+		game->key.left = 1;
+	else if (keycode == 65361)
 		game->key.right = 1;
 	else if (keycode == 65307)
 		close_win(game);
@@ -38,13 +47,13 @@ int		key_release(int keycode, t_game *game)
 		game->key.z = 0;
 	else if (keycode == 115)
 		game->key.s = 0;
-	else if (keycode == 100)
-		game->key.d = 0;
 	else if (keycode == 97)
+		game->key.d = 0;
+	else if (keycode == 100)
 		game->key.q = 0;
-	else if (keycode == 65361)
-		game->key.left = 0;
 	else if (keycode == 65363)
+		game->key.left = 0;
+	else if (keycode == 65361)
 		game->key.right = 0;
 	return (0);
 }

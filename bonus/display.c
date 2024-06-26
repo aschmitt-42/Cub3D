@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:48:43 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/25 16:08:34 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:55:22 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,15 @@ void	display(t_game *game)
 	int		texY;
 	int		color;
 
-	t_image texture = game->NO;
-	if (game->ray.side == 1)
+	t_image texture;
+	if (game->ray.side == 0 && game->ray.rayDirX >= 0)
+		texture = game->NO;
+	if (game->ray.side == 0 && game->ray.rayDirX < 0)
+		texture = game->SO;
+	if (game->ray.side == 1 && game->ray.rayDirY < 0)
 		texture = game->EA;
+	if (game->ray.side == 1 && game->ray.rayDirY >= 0)
+		texture = game->WE;
 	 
 	if (game->ray.side == 0)
 		wallX = game->player.posY + game->ray.perpWallDist * game->ray.rayDirY;
@@ -50,15 +56,13 @@ void	display(t_game *game)
 	texPos = (game->ray.drawStart - game->ray.h / 2 + game->ray.lineHeight / 2) * step;
 
 	int y = -1;
-	int plafond = create_trgb(0, 64,0,64);
-	int sol = create_trgb(0, 192,0,192);
 	
 	while (++y < game->height)
 	{
 		if (y < game->ray.drawStart)
-			pixel_put(game, game->ray.x, y, sol);
+			pixel_put(game, game->ray.x, y, game->F);
 		else if (y > game->ray.drawEnd)
-			pixel_put(game, game->ray.x, y, plafond);
+			pixel_put(game, game->ray.x, y, game->C);
 		else
 		{
 			texY = (int)texPos & (texture.height - 1);
