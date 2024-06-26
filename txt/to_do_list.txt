@@ -42,31 +42,11 @@ espaces sont une partie valable de la carte, c’est à vous de les gérer corre
 ment. Vous devez pouvoir parser n’importe quelle sorte de carte, tant qu’elle
 respecte les règles de carte.
 
->>Trouver une femme avec qui tu peux avancer dans la vie et qui t'aime enormement
-
->>rendre fier maman et ne pas mourir avant elle
-
 https://cdn.intra.42.fr/pdf/pdf/115748/fr.subject.pdf
 
->> Position joueur debut avec direction
->> couleur sol et plafond
->> resolution
+>> si plusieur fois SO pas d'erreur 
 
-init vecteur direction avec N W E S ainsi que vecteur plan
-
-    if (depart == 'N')
-		ray.dirx = -1;
-	if (depart == 'S')
-		ray.dirx = 1;
-	if (depart == 'E')
-		ray.diry = 1;
-	if (depart == 'W')
-		ray.diry = -1;
-	if (depart == 'N')
-		ray.plany = 0.66;
-	if (depart == 'S')
-		ray.plany = -0.66;
-	if (depart == 'E')
-		ray.planx = 0.66;
-	if (depart == 'W')
-		ray.planx = -0.66;
+ : F ou C avec un chiffre qui manque, ou un chiffre en trop
+ : F ou C avec une virgule en moins ou une virgule en trop
+ : F ou C avec un int supérieur à int max : doit renvoyer une erreur
+ : F ou C avec un chiffre supérieur à 255

@@ -1,16 +1,14 @@
 NO assets/texture/eagle.xpm
-SO assets/texture/wall.xpm
-WE assets/texture/wall.xpm
-EA assets/texture/texture.xpm
+SO assets/texture/greystone.xpm
+EA assets/texture/red.xpm
+WE assets/texture/purplestone.xpm
+
 
 F 105,96,96
 C 0,201,226
 
-
-
-
       1111111111111
-     100000000000001   11111111
+     10000000000E001   11111111
      111111111000011111100000001
        100000000000000000000001
         1110000000100000001111

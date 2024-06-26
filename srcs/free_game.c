@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/25 16:04:29 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:55:34 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_error(int code)
 {
 	if (code == 1)
-		printf("Error\nError\nMlx init failed\n");
+		printf("Error\nMlx init failed\n");
 	if (code == 2)
 		printf("Error\nOpen failed\n");
 	else if (code == 3)
@@ -25,11 +25,11 @@ void	print_error(int code)
 	else if (code == 5)
 		printf("Error\nEmpty file\n");
 	else if (code == 6)
-		printf("Error\n\n");
+		printf("Error\nNo position start\n");
 	else if (code == 7)
-		printf("Error\n\n");
+		printf("Error\nSeveral starting positions\n");
 	else if (code == 8)
-		printf("Error\n\n");
+		printf("Error\nInvalide : is a directory\n");
 	else if (code == 9)
 		printf("Error\n\n");
 	else if (code == 10)
@@ -54,8 +54,6 @@ void	game_construct(t_game *game)
 	game->player.dirY = 0;
 	game->player.planeX = 0;
 	game->player.planeY = 0;
-	game->player.posX = 1;
-	game->player.posY = 16;
 	game->key.z = 0;
 	game->key.s = 0;
 	game->key.q = 0;

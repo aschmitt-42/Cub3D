@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/25 17:10:54 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:54:48 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_player
 	double		dirY;
 	double		planeX;
 	double		planeY;
+	char		start;
 }				t_player;
 
 typedef struct s_key
