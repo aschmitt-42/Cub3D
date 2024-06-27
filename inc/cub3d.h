@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 23:28:25 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/28 01:31:14 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # include <math.h>
 
 # ifndef WIDTH
-#  define WIDTH 1920
+#  define WIDTH 500
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 1080
+#  define HEIGHT 500
 # endif
 
 typedef struct s_data

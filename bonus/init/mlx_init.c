@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:14:43 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/27 23:05:55 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/28 00:19:11 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_mlx(t_game *game)
 	init_vecteur(game);
 	game->minimap.enable = 0;
 	game->minimap.width = game->width / 8;
+	game->minimap.scale = 1 / (game->minimap.width * 0.1);
 	draw(game);
 	mlx_hook(game->mlibx.win_ptr, 17, 1L << 0, close_win, game);
 	mlx_hook(game->mlibx.win_ptr, 2, 1L << 0, key_press, game);

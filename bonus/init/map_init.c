@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 23:27:15 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/28 01:50:50 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,18 @@ void	create_color_fc(t_game *game, int line, int j, int i)
 		while (is_wspace(game->map[line][j]))
 			j++;
 		if (ft_isdigit(game->map[line][j]))
-			rgb[i++] = ft_atoi(game->map[line] + j);
+		{
+			rgb[i] = ft_atoi(game->map[line] + j);
+			i++;
+		}
 		else
 			free_game(game, 9);
-		while (is_wspace(game->map[line][j]))
+		while (ft_isdigit(game->map[line][j]))
 			j++;
-		while (game->map[line][j] && game->map[line][j - 1] != ',')
+		while (!ft_isdigit(game->map[line][j]) && game->map[line][j])
 			j++;
-		if (rgb[i - 1] > 255 || rgb[i - 1] < 0)
+		if (rgb[i - 1] > 255 || rgb[i - 1] < 0 || (i == 3
+			&& ft_isdigit(game->map[line][j])))
 			free_game(game, 9);
 	}
 	if (i < 3)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 20:58:16 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/27 23:25:20 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/28 00:18:17 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,5 @@ void	map_verif(t_game *game)
 				verify_point(game, i, j);
 		}
 	}
+	game->map_y_scale = i;
 }
