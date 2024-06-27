@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:48:43 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 19:00:45 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:27:15 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ void	test(t_game *game, t_image *texture, int texX)
 	int		color;
 	int		texy;
 
-	step = 1.0 * texture->height / game->ray.lineHeight;
-	texpos = (game->ray.drawStart - game->ray.h / 2
-			+ game->ray.lineHeight / 2) * step;
+	step = 1.0 * texture->height / game->ray.lineheight;
+	texpos = (game->ray.drawstart - game->ray.h / 2
+			+ game->ray.lineheight / 2) * step;
 	y = -1;
 	while (++y < game->height)
 	{
-		if (y < game->ray.drawStart)
-			pixel_put(game, game->ray.x, y, game->F);
-		else if (y > game->ray.drawEnd)
-			pixel_put(game, game->ray.x, y, game->C);
+		if (y < game->ray.drawstart)
+			pixel_put(game, game->ray.x, y, game->f);
+		else if (y > game->ray.drawend)
+			pixel_put(game, game->ray.x, y, game->c);
 		else
 		{
 			texy = (int)texpos & (texture->height - 1);
@@ -61,23 +61,23 @@ void	display(t_game *game)
 	int		texx ;
 	t_image	texture;
 
-	if (game->ray.side == 0 && game->ray.rayDirX >= 0)
-		texture = game->NO;
-	if (game->ray.side == 0 && game->ray.rayDirX < 0)
-		texture = game->SO;
-	if (game->ray.side == 1 && game->ray.rayDirY < 0)
-		texture = game->EA;
-	if (game->ray.side == 1 && game->ray.rayDirY >= 0)
-		texture = game->WE;
+	if (game->ray.side == 0 && game->ray.raydirx >= 0)
+		texture = game->no;
+	if (game->ray.side == 0 && game->ray.raydirx < 0)
+		texture = game->so;
+	if (game->ray.side == 1 && game->ray.raydiry < 0)
+		texture = game->ea;
+	if (game->ray.side == 1 && game->ray.raydiry >= 0)
+		texture = game->we;
 	if (game->ray.side == 0)
-		wallx = game->player.posY + game->ray.perpWallDist * game->ray.rayDirY;
+		wallx = game->player.posy + game->ray.perpwalldist * game->ray.raydiry;
 	else
-		wallx = game->player.posX + game->ray.perpWallDist * game->ray.rayDirX;
+		wallx = game->player.posx + game->ray.perpwalldist * game->ray.raydirx;
 	wallx -= floor((wallx));
 	texx = (int)(wallx * (double)(texture.width));
-	if (game->ray.side == 0 && game->ray.rayDirX > 0)
+	if (game->ray.side == 0 && game->ray.raydirx > 0)
 		texx = texture.width - texx - 1;
-	if (game->ray.side == 1 && game->ray.rayDirY < 0)
+	if (game->ray.side == 1 && game->ray.raydiry < 0)
 		texx = texture.width - texx - 1;
 	test(game, &texture, texx);
 }

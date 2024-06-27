@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 22:34:49 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 23:07:08 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:15:56 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	draw_map(t_game *game)
 	double	pos[2];
 
 	scale = 1 / (game->minimap.width * 0.1);
-	pos[1] = game->player.posX - 5;
+	pos[1] = game->player.posx - 5;
 	pixel[1] = 0;
 	while (pixel[1] <= game->minimap.width)
 	{
-		pos[0] = game->player.posY - 5;
+		pos[0] = game->player.posy - 5;
 		pixel[0] = 0;
 		while (pixel[0] <= game->minimap.width)
 		{
@@ -111,7 +111,7 @@ void draw_player(t_game *game)
     int cy = game->minimap.width / 2;
     
     // Convert rotation from 0 to 1 into radians (0 to 2*PI)
-    float angle = game->player.dirX * M_PI;
+    float angle = game->player.dirx * M_PI;
 
     // Calculate the sine and cosine of the angle for rotation
     float cos_angle = cos(angle);
@@ -225,11 +225,11 @@ void	draw_map(t_game *game, int pixel[2], double pos[2])
 	int		last_pos;
 
 	game->minimap.scale = 1 / (game->minimap.width * 0.1);
-	pos[1] = game->player.posX - 5;
+	pos[1] = game->player.posx - 5;
 	pixel[1] = 0;
 	while (pixel[1] <= game->minimap.width)
 	{
-		pos[0] = game->player.posY - 5;
+		pos[0] = game->player.posy - 5;
 		pixel[0] = 0;
 		draw_line(game, );
 		pixel[1]++;
@@ -270,7 +270,7 @@ void draw_player(t_game *game)
     int cy = game->minimap.width / 2;
     
     // Convert rotation from 0 to 1 into radians (0 to 2*PI)
-    float angle = game->player.dirX * M_PI;
+    float angle = game->player.dirx * M_PI;
 
     // Calculate the sine and cosine of the angle for rotation
     float cos_angle = cos(angle);

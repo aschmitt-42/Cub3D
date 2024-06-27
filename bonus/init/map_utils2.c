@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 20:58:16 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/27 22:29:39 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:25:20 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	pos_start(t_game *game)
 	size_t	j;
 
 	i = -1;
-	game->player.posX = -1;
+	game->player.posx = -1;
 	while (game->map[++i])
 	{
 		j = -1;
@@ -27,28 +27,28 @@ void	pos_start(t_game *game)
 			if (game->map[i][j] == 'S' || game->map[i][j] == 'N'
 				|| game->map[i][j] == 'W' || game->map[i][j] == 'E')
 			{
-				if (game->player.posX != -1)
+				if (game->player.posx != -1)
 					free_game(game, 7);
-				game->player.posX = i + 0.5;
-				game->player.posY = j + 0.5;
+				game->player.posx = i + 0.5;
+				game->player.posy = j + 0.5;
 				game->player.start = game->map[i][j];
 				game->map[i][j] = '0';
 			}
 		}
 	}
-	if (game->player.posX == -1)
+	if (game->player.posx == -1)
 		free_game(game, 6);
 }
 
 void	verify_texture(t_game *game, char *line)
 {
-	if (line[0] == 'N' && line[1] == 'O' && !game->NO.img)
+	if (line[0] == 'N' && line[1] == 'O' && !game->no.img)
 		free_game(game, 2);
-	if (line[0] == 'S' && line[1] == 'O' && !game->SO.img)
+	if (line[0] == 'S' && line[1] == 'O' && !game->so.img)
 		free_game(game, 2);
-	if (line[0] == 'W' && line[1] == 'E' && !game->WE.img)
+	if (line[0] == 'W' && line[1] == 'E' && !game->we.img)
 		free_game(game, 2);
-	if (line[0] == 'E' && line[1] == 'A' && !game->EA.img)
+	if (line[0] == 'E' && line[1] == 'A' && !game->ea.img)
 		free_game(game, 2);
 }
 
@@ -63,21 +63,21 @@ void	open_texture(t_game *game, size_t line)
 		free_game(game, 1);
 	del_newline(game->map[line]);
 	if (game->map[line][0] == 'N' && game->map[line][1] == 'O' &&
-		!game->NO.img)
-		game->NO.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr,
-				game->map[line] + j, &game->NO.width, &game->NO.height);
+		!game->no.img)
+		game->no.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr,
+				game->map[line] + j, &game->no.width, &game->no.height);
 	else if (game->map[line][0] == 'S' && game->map[line][1] == 'O' &&
-		!game->SO.img)
-		game->SO.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr,
-				game->map[line] + j, &game->SO.width, &game->SO.height);
+		!game->so.img)
+		game->so.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr,
+				game->map[line] + j, &game->so.width, &game->so.height);
 	else if (game->map[line][0] == 'W' && game->map[line][1] == 'E' &&
-		!game->WE.img)
-		game->WE.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr,
-				game->map[line] + j, &game->WE.width, &game->WE.height);
+		!game->we.img)
+		game->we.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr,
+				game->map[line] + j, &game->we.width, &game->we.height);
 	else if (game->map[line][0] == 'E' && game->map[line][1] == 'A' &&
-		!game->EA.img)
-		game->EA.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr,
-				game->map[line] + j, &game->EA.width, &game->EA.height);
+		!game->ea.img)
+		game->ea.img = mlx_xpm_file_to_image(game->mlibx.mlx_ptr,
+				game->map[line] + j, &game->ea.width, &game->ea.height);
 	verify_texture(game, game->map[line]);
 }
 

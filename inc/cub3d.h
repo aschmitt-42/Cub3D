@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 23:10:57 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:28:25 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 # include <sys/types.h>
 # include <math.h>
 
-#ifndef WIDTH
-# define WIDTH 1920
-#endif
+# ifndef WIDTH
+#  define WIDTH 1920
+# endif
 
-#ifndef HEIGHT
-# define HEIGHT 1080
-#endif
+# ifndef HEIGHT
+#  define HEIGHT 1080
+# endif
 
 typedef struct s_data
 {
@@ -37,12 +37,12 @@ typedef struct s_data
 
 typedef struct s_player
 {
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
+	double		posx;
+	double		posy;
+	double		dirx;
+	double		diry;
+	double		planex;
+	double		planey;
 	char		start;
 }				t_player;
 
@@ -60,33 +60,33 @@ typedef struct s_image
 {
 	void	*img;
 	int		*addr;
-	int 	bpp;
-    int 	size_line;
-   	int 	endian;
+	int		bpp;
+	int		size_line;
+	int		endian;
 	int		width;
 	int		height;
 }				t_image;
 
 typedef struct s_ray
 {
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	double	sideDistX; //length of ray from current position to next x or y-side
-	double	sideDistY;
-	double	deltaDistX; //longueur du rayon depuis la position actuelle jusqu'au prochain côté x ou y
-	double	deltaDistY;
-	double	perpWallDist;
-	int		mapX;
-	int		mapY;
-	int		stepX; //dans quelle direction avancer dans la direction x ou y (soit +1 ou -1)
-	int		stepY;
-	int		hit; //Y a-t-il eu un coup de mur ?
-	int		side; //un mur NS ou EW a-t-il été touché ?
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx;
+	double	deltadisty;
+	double	perpwalldist;
+	int		mapx;
+	int		mapy;
+	int		stepx;
+	int		stepy;
+	int		hit;
+	int		side;
 	int		h;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
 	int		x;
 }				t_ray;
 
@@ -105,18 +105,17 @@ typedef struct s_game
 {
 	int			width;
 	int			height;
-	double		moveSpeed;
-	double		rotSpeed;
+	double		movespeed;
+	double		rotspeed;
 	char		**map;
 	char		**p_map;
 	int			map_y_scale;
-	int			frame;
-	t_image		NO;
-	t_image		SO;
-	t_image		WE;
-	t_image		EA;
-	int			F;
-	int			C;
+	t_image		no;
+	t_image		so;
+	t_image		we;
+	t_image		ea;
+	int			f;
+	int			c;
 	t_data		mlibx;
 	t_player	player;
 	t_key		key;
@@ -132,14 +131,14 @@ void	game_construct(t_game *game);
 void	free_map(t_game *game, int line);
 // code derreur : 1=error mlx ,2=open failed ,3=Invalid line parse ,4=maps not surrended by wall
 //5=Empty file ,6=No position start ,7=Several starting positions ,8= ,9= ,10=closing cub3d
-void 	free_game(t_game *game, int error_code);
+void	free_game(t_game *game, int error_code);
 
 // init map
 void	get_img_addr(t_game *game);
 void	get_y_scale_map(t_game *game);
 void	create_color_fc(t_game *game, int line, int j, int i);
 void	open_texture(t_game *game, size_t line);
-void 	del_newline(char *line);
+void	del_newline(char *line);
 int		still_header(t_game *game, size_t line);
 int		check_extention(char *file);
 void	map_verif(t_game *game);
@@ -155,7 +154,7 @@ int		close_win(t_game *game);
 void	pixel_put(t_game *game, int x, int y, int color);
 int		render_next_frame(t_game *game);
 int		create_rgb(unsigned char r, unsigned char g, unsigned char b);
-void    draw(t_game *game);
+void	draw(t_game *game);
 void	performe_dda(t_game *game);
 void	init_vecteur(t_game *game);
 void	display(t_game *game);

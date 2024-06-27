@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:58:44 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 22:19:23 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:20:54 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,49 @@
 
 void	init_sidedist(t_game *game)
 {
-	if (game->ray.rayDirX < 0)
+	if (game->ray.raydirx < 0)
 	{
-		game->ray.stepX = -1;
-		game->ray.sideDistX = (game->player.posX - game->ray.mapX)
-			* game->ray.deltaDistX;
+		game->ray.stepx = -1;
+		game->ray.sidedistx = (game->player.posx - game->ray.mapx)
+			* game->ray.deltadistx;
 	}
 	else
 	{
-		game->ray.stepX = 1;
-		game->ray.sideDistX = (game->ray.mapX + 1.0 - game->player.posX)
-			* game->ray.deltaDistX;
+		game->ray.stepx = 1;
+		game->ray.sidedistx = (game->ray.mapx + 1.0 - game->player.posx)
+			* game->ray.deltadistx;
 	}
-	if (game->ray.rayDirY < 0)
+	if (game->ray.raydiry < 0)
 	{
-		game->ray.stepY = -1;
-		game->ray.sideDistY = (game->player.posY - game->ray.mapY)
-			* game->ray.deltaDistY;
+		game->ray.stepy = -1;
+		game->ray.sidedisty = (game->player.posy - game->ray.mapy)
+			* game->ray.deltadisty;
 	}
 	else
 	{
-		game->ray.stepY = 1;
-		game->ray.sideDistY = (game->ray.mapY + 1.0 - game->player.posY)
-			* game->ray.deltaDistY;
+		game->ray.stepy = 1;
+		game->ray.sidedisty = (game->ray.mapy + 1.0 - game->player.posy)
+			* game->ray.deltadisty;
 	}
 }
 
 void	init_value(t_game *game)
 {
-	game->ray.cameraX = 2 * game->ray.x / (double)(game->width) - 1;
-	game->ray.rayDirX = game->player.dirX + game->player.planeX
-		* game->ray.cameraX;
-	game->ray.rayDirY = game->player.dirY + game->player.planeY
-		* game->ray.cameraX;
-	game->ray.mapX = game->player.posX;
-	game->ray.mapY = game->player.posY;
-	if (game->ray.rayDirX == 0)
-		game->ray.deltaDistX = 1e30;
+	game->ray.camerax = 2 * game->ray.x / (double)(game->width) - 1;
+	game->ray.raydirx = game->player.dirx + game->player.planex
+		* game->ray.camerax;
+	game->ray.raydiry = game->player.diry + game->player.planey
+		* game->ray.camerax;
+	game->ray.mapx = game->player.posx;
+	game->ray.mapy = game->player.posy;
+	if (game->ray.raydirx == 0)
+		game->ray.deltadistx = 1e30;
 	else
-		game->ray.deltaDistX = fabs(1 / game->ray.rayDirX);
-	if (game->ray.rayDirY == 0)
-		game->ray.deltaDistY = 1e30;
+		game->ray.deltadistx = fabs(1 / game->ray.raydirx);
+	if (game->ray.raydiry == 0)
+		game->ray.deltadisty = 1e30;
 	else
-		game->ray.deltaDistY = fabs(1 / game->ray.rayDirY);
+		game->ray.deltadisty = fabs(1 / game->ray.raydiry);
 	game->ray.hit = 0;
 	init_sidedist(game);
 }

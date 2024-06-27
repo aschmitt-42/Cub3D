@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:53:12 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 19:36:34 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:23:02 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	turn_right(t_game *game)
 	double	olddirx;
 	double	oldplanex;
 
-	olddirx = game->player.dirX;
-	game->player.dirX = game->player.dirX * cos(game->rotSpeed)
-		- game->player.dirY * sin(game->rotSpeed);
-	game->player.dirY = olddirx * sin(game->rotSpeed)
-		+ game->player.dirY * cos(game->rotSpeed);
-	oldplanex = game->player.planeX;
-	game->player.planeX = game->player.planeX * cos(game->rotSpeed)
-		- game->player.planeY * sin(game->rotSpeed);
-	game->player.planeY = oldplanex * sin(game->rotSpeed)
-		+ game->player.planeY * cos(game->rotSpeed);
+	olddirx = game->player.dirx;
+	game->player.dirx = game->player.dirx * cos(game->rotspeed)
+		- game->player.diry * sin(game->rotspeed);
+	game->player.diry = olddirx * sin(game->rotspeed)
+		+ game->player.diry * cos(game->rotspeed);
+	oldplanex = game->player.planex;
+	game->player.planex = game->player.planex * cos(game->rotspeed)
+		- game->player.planey * sin(game->rotspeed);
+	game->player.planey = oldplanex * sin(game->rotspeed)
+		+ game->player.planey * cos(game->rotspeed);
 }
 
 int	move_lr(t_game *game)
@@ -36,16 +36,16 @@ int	move_lr(t_game *game)
 
 	if (game->key.left)
 	{
-		olddirx = game->player.dirX;
-		game->player.dirX = game->player.dirX * cos(-game->rotSpeed)
-			- game->player.dirY * sin(-game->rotSpeed);
-		game->player.dirY = olddirx * sin(-game->rotSpeed)
-			+ game->player.dirY * cos(-game->rotSpeed);
-		oldplanex = game->player.planeX;
-		game->player.planeX = game->player.planeX * cos(-game->rotSpeed)
-			- game->player.planeY * sin(-game->rotSpeed);
-		game->player.planeY = oldplanex * sin(-game->rotSpeed)
-			+ game->player.planeY * cos(-game->rotSpeed);
+		olddirx = game->player.dirx;
+		game->player.dirx = game->player.dirx * cos(-game->rotspeed)
+			- game->player.diry * sin(-game->rotspeed);
+		game->player.diry = olddirx * sin(-game->rotspeed)
+			+ game->player.diry * cos(-game->rotspeed);
+		oldplanex = game->player.planex;
+		game->player.planex = game->player.planex * cos(-game->rotspeed)
+			- game->player.planey * sin(-game->rotspeed);
+		game->player.planey = oldplanex * sin(-game->rotspeed)
+			+ game->player.planey * cos(-game->rotspeed);
 		return (1);
 	}
 	if (game->key.right)
@@ -59,22 +59,22 @@ int	move_updown(t_game *game)
 
 	if (game->key.z)
 	{
-		n = game->player.posX + game->player.dirX * game->moveSpeed;
-		if (game->map[n][(int)(game->player.posY)] == '0')
-			game->player.posX += game->player.dirX * game->moveSpeed;
-		n = game->player.posY + game->player.dirY * game->moveSpeed;
-		if (game->map[(int)(game->player.posX)][n] == '0')
-			game->player.posY += game->player.dirY * game->moveSpeed;
+		n = game->player.posx + game->player.dirx * game->movespeed;
+		if (game->map[n][(int)(game->player.posy)] == '0')
+			game->player.posx += game->player.dirx * game->movespeed;
+		n = game->player.posy + game->player.diry * game->movespeed;
+		if (game->map[(int)(game->player.posx)][n] == '0')
+			game->player.posy += game->player.diry * game->movespeed;
 		return (1);
 	}
 	if (game->key.s)
 	{
-		n = game->player.posX - game->player.dirX * game->moveSpeed;
-		if (game->map[n][(int)(game->player.posY)] == '0')
-			game->player.posX -= game->player.dirX * game->moveSpeed;
-		n = game->player.posY - game->player.dirY * game->moveSpeed;
-		if (game->map[(int)(game->player.posX)][n] == '0')
-			game->player.posY -= game->player.dirY * game->moveSpeed;
+		n = game->player.posx - game->player.dirx * game->movespeed;
+		if (game->map[n][(int)(game->player.posy)] == '0')
+			game->player.posx -= game->player.dirx * game->movespeed;
+		n = game->player.posy - game->player.diry * game->movespeed;
+		if (game->map[(int)(game->player.posx)][n] == '0')
+			game->player.posy -= game->player.diry * game->movespeed;
 		return (1);
 	}
 	return (0);
@@ -86,22 +86,22 @@ int	move_side(t_game *game)
 
 	if (game->key.d)
 	{
-		n = game->player.posX - game->player.dirY * (game->moveSpeed * 2);
-		if (game->map[n][(int)(game->player.posY)] == '0')
-			game->player.posX -= game->player.dirY * game->moveSpeed;
-		n = game->player.posY + game->player.dirX * (game->moveSpeed * 2);
-		if (game->map[(int)(game->player.posX)][n] == '0')
-			game->player.posY += game->player.dirX * game->moveSpeed;
+		n = game->player.posx - game->player.diry * (game->movespeed * 2);
+		if (game->map[n][(int)(game->player.posy)] == '0')
+			game->player.posx -= game->player.diry * game->movespeed;
+		n = game->player.posy + game->player.dirx * (game->movespeed * 2);
+		if (game->map[(int)(game->player.posx)][n] == '0')
+			game->player.posy += game->player.dirx * game->movespeed;
 		return (1);
 	}
 	if (game->key.q)
 	{
-		n = game->player.posX + game->player.dirY * (game->moveSpeed * 2);
-		if (game->map[n][(int)(game->player.posY)] == '0')
-			game->player.posX += game->player.dirY * game->moveSpeed;
-		n = game->player.posY - game->player.dirX * (game->moveSpeed * 2);
-		if (game->map[(int)(game->player.posX)][n] == '0')
-			game->player.posY -= game->player.dirX * game->moveSpeed;
+		n = game->player.posx + game->player.diry * (game->movespeed * 2);
+		if (game->map[n][(int)(game->player.posy)] == '0')
+			game->player.posx += game->player.diry * game->movespeed;
+		n = game->player.posy - game->player.dirx * (game->movespeed * 2);
+		if (game->map[(int)(game->player.posx)][n] == '0')
+			game->player.posy -= game->player.dirx * game->movespeed;
 		return (1);
 	}
 	return (0);

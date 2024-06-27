@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 22:08:40 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:27:15 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	create_color_fc(t_game *game, int line, int j, int i)
 	if (i < 3)
 		free_game(game, 9);
 	if (game->map[line][0] == 'C')
-		game->C = create_rgb(rgb[0], rgb[1], rgb[2]);
+		game->c = create_rgb(rgb[0], rgb[1], rgb[2]);
 	else
-		game->F = create_rgb(rgb[0], rgb[1], rgb[2]);
+		game->f = create_rgb(rgb[0], rgb[1], rgb[2]);
 }
 
 char	**ft_malloc_map(t_game *game, char *file)

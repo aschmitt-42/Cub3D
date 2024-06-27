@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:42:26 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/27 22:28:43 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:27:15 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	get_img_addr(t_game *game)
 {
-	game->NO.addr = (int *)(mlx_get_data_addr(game->NO.img,
-				&game->NO.bpp, &game->NO.size_line, &game->NO.endian));
-	game->SO.addr = (int *)(mlx_get_data_addr(game->SO.img,
-				&game->SO.bpp, &game->SO.size_line, &game->SO.endian));
-	game->EA.addr = (int *)(mlx_get_data_addr(game->EA.img,
-				&game->EA.bpp, &game->EA.size_line, &game->EA.endian));
-	game->WE.addr = (int *)(mlx_get_data_addr(game->WE.img,
-				&game->WE.bpp, &game->WE.size_line, &game->WE.endian));
+	game->no.addr = (int *)(mlx_get_data_addr(game->no.img,
+				&game->no.bpp, &game->no.size_line, &game->no.endian));
+	game->so.addr = (int *)(mlx_get_data_addr(game->so.img,
+				&game->so.bpp, &game->so.size_line, &game->so.endian));
+	game->ea.addr = (int *)(mlx_get_data_addr(game->ea.img,
+				&game->ea.bpp, &game->ea.size_line, &game->ea.endian));
+	game->we.addr = (int *)(mlx_get_data_addr(game->we.img,
+				&game->we.bpp, &game->we.size_line, &game->we.endian));
 }
 
 void	print_map(char **map)
@@ -79,8 +79,8 @@ int	still_header(t_game *game, size_t line)
 {
 	if (!game->map || !game->map[line])
 		return (0);
-	if (game->C && game->F && game->NO.img && game->SO.img && game->WE.img
-		&& game->EA.img && game->map[line][0] != '\n')
+	if (game->c && game->f && game->no.img && game->so.img && game->we.img
+		&& game->ea.img && game->map[line][0] != '\n')
 		return (0);
 	return (1);//verifier si toutes les infos du header sont remplie, et si la ligne nest pas juste un /n, alors header est finit
 }

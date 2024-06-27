@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/27 19:05:33 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:27:15 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,22 @@ void	game_construct(t_game *game)
 	game->p_map = NULL;
 	game->width = WIDTH;
 	game->height = HEIGHT;
-	game->C = 0;
-	game->F = 0;
-	game->NO.img = NULL;
-	game->SO.img = NULL;
-	game->WE.img = NULL;
-	game->EA.img = NULL;
-	game->player.dirX = 0;
-	game->player.dirY = 0;
-	game->player.planeX = 0;
-	game->player.planeY = 0;
+	game->c = 0;
+	game->f = 0;
+	game->no.img = NULL;
+	game->so.img = NULL;
+	game->we.img = NULL;
+	game->ea.img = NULL;
+	game->player.dirx = 0;
+	game->player.diry = 0;
+	game->player.planex = 0;
+	game->player.planey = 0;
 	game->key.z = 0;
 	game->key.s = 0;
 	game->key.q = 0;
 	game->key.d = 0;
 	game->key.left = 0;
 	game->key.right = 0;
-	game->frame = 0;
 	game->img.img = NULL;
 }
 
@@ -86,14 +85,14 @@ void	free_map(t_game *game, int line)
 
 void	free_mlx(t_game *game)
 {
-	if (game->EA.img)
-		mlx_destroy_image(game->mlibx.mlx_ptr, game->EA.img);
-	if (game->NO.img)
-		mlx_destroy_image(game->mlibx.mlx_ptr, game->NO.img);
-	if (game->SO.img)
-		mlx_destroy_image(game->mlibx.mlx_ptr, game->SO.img);
-	if (game->WE.img)
-		mlx_destroy_image(game->mlibx.mlx_ptr, game->WE.img);
+	if (game->ea.img)
+		mlx_destroy_image(game->mlibx.mlx_ptr, game->ea.img);
+	if (game->no.img)
+		mlx_destroy_image(game->mlibx.mlx_ptr, game->no.img);
+	if (game->so.img)
+		mlx_destroy_image(game->mlibx.mlx_ptr, game->so.img);
+	if (game->we.img)
+		mlx_destroy_image(game->mlibx.mlx_ptr, game->we.img);
 	if (game->img.img)
 		mlx_destroy_image(game->mlibx.mlx_ptr, game->img.img);
 	if (game->mlibx.win_ptr)
