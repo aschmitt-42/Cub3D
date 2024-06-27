@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/26 17:55:34 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:05:33 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_error(int code)
 	else if (code == 8)
 		printf("Error\nInvalide : is a directory\n");
 	else if (code == 9)
-		printf("Error\n\n");
+		printf("Error\nColor error\n");
 	else if (code == 10)
 		printf("Closing Cub3d\n");
 }
@@ -78,7 +78,7 @@ void	free_map(t_game *game, int line)
 		game->map[i] = NULL;
 		i++;
 		if (i != 0 && line == i)
-			return;
+			return ;
 	}
 	free(game->p_map);
 	game->map = NULL;
@@ -104,8 +104,8 @@ void	free_mlx(t_game *game)
 		free(game->mlibx.mlx_ptr);
 	}
 }
-// code derreur : 1= ,2= ,3= ,4= ,5= ,6= ,7= ,8= ,9= ,10=
-void 	free_game(t_game *game, int error_code)
+
+void	free_game(t_game *game, int error_code)
 {
 	if (error_code)
 		print_error(error_code);

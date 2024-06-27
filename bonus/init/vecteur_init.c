@@ -6,19 +6,24 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:09:03 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/26 17:56:35 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:30:00 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_vecteur(t_game *game)
+void	pre_init(t_game *game)
 {
 	game->player.dirX = 0;
 	game->player.dirY = 0;
 	game->player.planeX = 0;
 	game->player.planeY = 0;
-    if (game->player.start == 'N')
+}
+
+void	init_vecteur(t_game *game)
+{
+	pre_init(game);
+	if (game->player.start == 'N')
 	{
 		game->player.dirX = -1;
 		game->player.planeY = 0.66;

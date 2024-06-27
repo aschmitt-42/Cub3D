@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+         #
+#    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/06/27 19:11:35 by eboumaza         ###   ########.fr        #
+#    Updated: 2024/06/27 22:33:16 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,13 +43,14 @@ SRC 		= $(SRC_DIR)$(GAME_DIR)main.c \
 			  $(SRC_DIR)$(LIBFT_DIR)utils1.c \
 			  $(SRC_DIR)$(LIBFT_DIR)utils2.c
 
-SRC_BONUS = $(SRC_BONUS_DIR)main.c \
-			  $(SRC_BONUS_DIR)free_game.c \
-			  $(SRC_BONUS_DIR)dda.c \
-			  $(SRC_BONUS_DIR)display.c \
-			  $(SRC_BONUS_DIR)mini_map.c \
-			  $(SRC_BONUS_DIR)draw.c \
-			  $(SRC_BONUS_DIR)key.c \
+SRC_BONUS = $(SRC_BONUS_DIR)$(GAME_DIR)main.c \
+			  $(SRC_BONUS_DIR)$(GAME_DIR)free_game.c \
+			  $(SRC_BONUS_DIR)$(GAME_DIR)dda.c \
+			  $(SRC_BONUS_DIR)$(GAME_DIR)display.c \
+			  $(SRC_BONUS_DIR)$(GAME_DIR)draw.c \
+			  $(SRC_BONUS_DIR)$(GAME_DIR)key.c \
+			  $(SRC_BONUS_DIR)$(GAME_DIR)mini_map.c \
+			  $(SRC_BONUS_DIR)$(GAME_DIR)key_utils.c \
 			  $(SRC_BONUS_DIR)$(INIT_DIR)vecteur_init.c \
 			  $(SRC_BONUS_DIR)$(INIT_DIR)map_init.c \
 			  $(SRC_BONUS_DIR)$(INIT_DIR)mlx_init.c \
@@ -57,7 +58,7 @@ SRC_BONUS = $(SRC_BONUS_DIR)main.c \
 			  $(SRC_BONUS_DIR)$(INIT_DIR)map_utils2.c \
 			  $(SRC_BONUS_DIR)$(LIBFT_DIR)gnl.c \
 			  $(SRC_BONUS_DIR)$(LIBFT_DIR)utils1.c \
-			  $(SRC_BONUS_DIR)$(LIBFT_DIR)utils2.c 
+			  $(SRC_BONUS_DIR)$(LIBFT_DIR)utils2.c
 
 OBJ 		= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 

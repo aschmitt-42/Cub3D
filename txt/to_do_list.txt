@@ -50,3 +50,15 @@ https://cdn.intra.42.fr/pdf/pdf/115748/fr.subject.pdf
  : F ou C avec une virgule en moins ou une virgule en trop
  : F ou C avec un int supérieur à int max : doit renvoyer une erreur
  : F ou C avec un chiffre supérieur à 255
+
+
+if (keycode == 109 && game->minimap.enable == 1)
+	{
+		game->minimap.enable = 0;
+		draw(game);
+	}
+	else if (keycode == 109)
+	{
+		game->minimap.enable = 1;
+		draw(game);
+	}

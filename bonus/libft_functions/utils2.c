@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:08:02 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/23 17:16:28 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:33:19 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	ft_atoi(const char *str)
 	return (result * minus);
 }
 
-
 int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
@@ -57,12 +56,10 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-
 int	create_rgb(unsigned char r, unsigned char g, unsigned char b)
 {
 	return (*(int *)(unsigned char [3]){b, g, r});
 }
-
 
 int	is_wspace(char c)
 {

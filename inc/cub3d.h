@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 19:22:05 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:10:57 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void	init_vecteur(t_game *game);
 void	display(t_game *game);
 void	cub3d(t_game *game);
 
-// key hook
+// key 
 int		move_lr(t_game *game);
 int		move_updown(t_game *game);
 int		move_side(t_game *game);
@@ -181,5 +181,7 @@ int		ft_atoi(const char *str);
 int		ft_iswspace(char c);
 int		ft_isdigit(int c);
 int		is_wspace(char c);
+
+void	mini_map(t_game *game);
 
 #endif
