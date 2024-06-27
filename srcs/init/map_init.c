@@ -3,68 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/26 17:55:54 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:31:10 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	pos_start(t_game *game)
+void	create_color_fc(t_game *game, int line, int j, int i)
 {
-	size_t	i;
-	size_t	j;
+	int	rgb[3];
 
-	i = -1;
-	game->player.posX = -1;
-	while (game->map[++i])
+	while (game->map[line][j] && i < 3)
 	{
-		j = -1;
-		while (game->map[i][++j])
-		{
-			if (game->map[i][j] == 'S' || game->map[i][j] == 'N' || game->map[i][j] == 'W' || game->map[i][j] == 'E')
-			{
-				if (game->player.posX != -1)
-					free_game(game, 7);
-				game->player.posX = i + 0.5;
-				game->player.posY = j + 0.5;
-				game->player.start = game->map[i][j];
-				game->map[i][j] = '0';
-			}
-		}
+		while (is_wspace(game->map[line][j]))
+			j++;
+		if (ft_isdigit(game->map[line][j]))
+			rgb[i++] = ft_atoi(game->map[line] + j);
+		else
+			free_game(game, 9);
+		while (is_wspace(game->map[line][j]))
+			j++;
+		while (game->map[line][j] && game->map[line][j - 1] != ',')
+			j++;
+		if (rgb[i - 1] > 255 || rgb[i - 1] < 0)
+			free_game(game, 9);
 	}
-	if (game->player.posX == -1)
-		free_game(game, 6);
+	if (i < 3)
+		free_game(game, 9);
+	if (game->map[line][0] == 'C')
+		game->C = create_rgb(rgb[0], rgb[1], rgb[2]);
+	else
+		game->F = create_rgb(rgb[0], rgb[1], rgb[2]);
 }
 
-void	map_verif(t_game *game)
+char	**ft_malloc_map(t_game *game, char *file)
 {
-	size_t	i;
-	size_t	j;
+	char	*temp;
+	char	**map;
+	int		i;
+	int		fd;
 
-	i = -1;
-	if (!game->map)
-		free_game(game, 5);
-	pos_start(game);
-	while (game->map[++i])
+	i = 0;
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		free_game(game, 2);
+	temp = get_next_line(fd);
+	while (temp)
 	{
-		j = -1;
-		while (game->map[i][++j])
-		{
-			if (game->map[i][j] == '0')
-			{
-				if (!game->map[i + 1] || j == 0 || i == 0 || game->map[i][j + 1] == '\0')
-					free_game(game, 4);
-				if (!(game->map[i][j + 1] == '1' || game->map[i][j + 1] == '0')
-					|| !(game->map[i][j - 1] == '1' || game->map[i][j - 1] == '0')
-					|| !(game->map[i + 1][j] == '1' || game->map[i + 1][j] == '0')
-					|| !(game->map[i - 1][j] == '1' || game->map[i - 1][j] == '0'))
-					free_game(game, 4);
-			}
-		}
+		i++;
+		free(temp);
+		temp = get_next_line(fd);
 	}
+	map = malloc(sizeof(char *) * (i + 1));
+	close(fd);
+	if (!map)
+		return (NULL);
+	game->p_map = map;
+	map[0] = NULL;
+	return (map);
 }
 
 char	**handle_header(t_game *game)
@@ -75,26 +74,18 @@ char	**handle_header(t_game *game)
 	while (still_header(game, line))
 	{
 		if ((!ft_strncmp(game->map[line], "NO", 2)
-			|| !ft_strncmp(game->map[line], "SO", 2)
-			|| !ft_strncmp(game->map[line], "WE", 2)
-			|| !ft_strncmp(game->map[line], "EA", 2)))
+				|| !ft_strncmp(game->map[line], "SO", 2)
+				|| !ft_strncmp(game->map[line], "WE", 2)
+				|| !ft_strncmp(game->map[line], "EA", 2)))
 			open_texture(game, line);
 		else if (game->map[line][0] == 'F' || game->map[line][0] == 'C')
-			create_color_FC(game, line, 1, 0);
+			create_color_fc(game, line, 1, 0);
 		else if (game->map[line][0] != '\n')
 			free_game(game, 3);
 		line++;
 	}
-	free_map(game, line);//supprime les strings du headers
+	free_map(game, line);
 	return (game->map + line);
-}
-
-void	get_img_addr(t_game *game)
-{
-	game->NO.addr = (int *)(mlx_get_data_addr(game->NO.img, &game->NO.bpp, &game->NO.size_line, &game->NO.endian));
-	game->SO.addr = (int *)(mlx_get_data_addr(game->SO.img, &game->SO.bpp, &game->SO.size_line, &game->SO.endian));
-	game->EA.addr = (int *)(mlx_get_data_addr(game->EA.img, &game->EA.bpp, &game->EA.size_line, &game->EA.endian));
-	game->WE.addr = (int *)(mlx_get_data_addr(game->WE.img, &game->WE.bpp, &game->WE.size_line, &game->WE.endian));
 }
 
 void	map_filler(char *file, t_game *game)
@@ -116,9 +107,8 @@ void	map_filler(char *file, t_game *game)
 		i++;
 	}
 	close(fd);
-	game->map = handle_header(game);//rempli toutes les infos du headers, et free les string associe, puis renvoie game->map + header_len
-	// print_map(game->map);
-	get_y_scale_map(game);
+	game->map = handle_header(game);
+	print_map(game->map);
 	map_verif(game);
 	get_img_addr(game);
 }

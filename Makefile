@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
+#    By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/06/26 17:53:49 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/06/27 19:11:35 by eboumaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME 		= cub3D
 INC			= inc/
 SRC_DIR		= srcs/
 SRC_BONUS_DIR = bonus/
+GAME_DIR	= game/
 INIT_DIR	= init/
 LIBFT_DIR	= libft_functions/
 OBJ_DIR		= obj/
@@ -26,12 +27,13 @@ LDFLAGS 	= -Lminilibx/mlx_Linux -Lminilibx/mlx -L/usr/lib -Imlx_linux -lXext -lX
 LIB 		= inc/ml/libmlx.a inc/ml/libmlx_Linux.a
 RM			= rm -f
 
-SRC 		= $(SRC_DIR)main.c \
-			  $(SRC_DIR)free_game.c \
-			  $(SRC_DIR)dda.c \
-			  $(SRC_DIR)display.c \
-			  $(SRC_DIR)draw.c \
-			  $(SRC_DIR)key.c \
+SRC 		= $(SRC_DIR)$(GAME_DIR)main.c \
+			  $(SRC_DIR)$(GAME_DIR)free_game.c \
+			  $(SRC_DIR)$(GAME_DIR)dda.c \
+			  $(SRC_DIR)$(GAME_DIR)display.c \
+			  $(SRC_DIR)$(GAME_DIR)draw.c \
+			  $(SRC_DIR)$(GAME_DIR)key.c \
+			  $(SRC_DIR)$(GAME_DIR)key_utils.c \
 			  $(SRC_DIR)$(INIT_DIR)vecteur_init.c \
 			  $(SRC_DIR)$(INIT_DIR)map_init.c \
 			  $(SRC_DIR)$(INIT_DIR)mlx_init.c \

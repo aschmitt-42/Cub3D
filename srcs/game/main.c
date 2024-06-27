@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:36:55 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/26 17:55:47 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:06:42 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init(t_game *game, char **av)
 
 int	main(int ac, char **av)
 {
-	t_game game;
+	t_game	game;
 
 	if (ac != 2)
 		return (write(2, "Error\nNo .cub file specified\n", 29), 1);

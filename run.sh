@@ -1,1 +1,1 @@
-valgrind --leak-check=full --show-leak-kinds=all ./cub3D "assets/map/map1.cub"
+valgrind --leak-check=full --show-leak-kinds=all ./cub3D "map.cub"

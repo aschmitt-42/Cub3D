@@ -6,12 +6,11 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:08:00 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/01 14:20:45 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:33:37 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 size_t	ft_strlen(const char *str)
 {
@@ -24,6 +23,7 @@ size_t	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
+
 char	*ft_strdup(const char *src)
 {
 	size_t	i;

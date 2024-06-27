@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:14:43 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/25 16:10:31 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:20:45 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ void	init_mlx(t_game *game)
 		(game->mlibx.mlx_ptr, game->width, game->height, "Cub3D");
 	if (!game->mlibx.win_ptr)
 		free_game(game, 1);
-	game->img.img = mlx_new_image(game->mlibx.mlx_ptr, game->width, game->height);
+	game->img.img = mlx_new_image(game->mlibx.mlx_ptr,
+			game->width, game->height);
 	if (!game->img.img)
 		free_game(game, 1);
-	game->img.addr = (int *)mlx_get_data_addr(game->img.img, &game->img.bpp,&game->img.size_line, &game->img.endian);
+	game->img.addr = (int *)mlx_get_data_addr(game->img.img,
+			&game->img.bpp, &game->img.size_line, &game->img.endian);
 	init_vecteur(game);
 	draw(game);
 	mlx_hook(game->mlibx.win_ptr, 17, 1L << 0, close_win, game);

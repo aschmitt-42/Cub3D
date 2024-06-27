@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/26 18:23:36 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:22:05 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_minimap
 	int		max;
 	int		min;
 	int		pos;
+	double	scale;
 }		t_minimap;
 
 typedef struct s_game
@@ -129,32 +130,48 @@ void	game_construct(t_game *game);
 
 // free
 void	free_map(t_game *game, int line);
+// code derreur : 1=error mlx ,2=open failed ,3=Invalid line parse ,4=maps not surrended by wall
+//5=Empty file ,6=No position start ,7=Several starting positions ,8= ,9= ,10=closing cub3d
 void 	free_game(t_game *game, int error_code);
 
 // init map
+void	get_img_addr(t_game *game);
 void	get_y_scale_map(t_game *game);
-void	create_color_FC(t_game *game, int line, int j, int i);
+void	create_color_fc(t_game *game, int line, int j, int i);
 void	open_texture(t_game *game, size_t line);
 void 	del_newline(char *line);
 int		still_header(t_game *game, size_t line);
 int		check_extention(char *file);
+void	map_verif(t_game *game);
 char	**ft_malloc_map(t_game *game, char *file);
 void	print_map(char **map);
 void	init_map(char *file, t_game *game);
-char	*get_next_line(int fd);
 
 // init mlx
 void	init_mlx(t_game *game);
 int		close_win(t_game *game);
 
 // game
-void	cub3d(t_game *game);
 void	pixel_put(t_game *game, int x, int y, int color);
-
-void	mini_map(t_game *game);
 int		render_next_frame(t_game *game);
+int		create_rgb(unsigned char r, unsigned char g, unsigned char b);
+void    draw(t_game *game);
+void	performe_dda(t_game *game);
+void	init_vecteur(t_game *game);
+void	display(t_game *game);
+void	cub3d(t_game *game);
+
+// key hook
+int		move_lr(t_game *game);
+int		move_updown(t_game *game);
+int		move_side(t_game *game);
+int		key_release(int keycode, t_game *game);
+int		key_press(int keycode, t_game *game);
+int		play(t_game *game);
+
+// libft
+char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
-int		is_wspace(char c);
 char	*ft_strdup(const char *src);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strchr(const char *str, int c);
@@ -163,17 +180,6 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
 int		ft_iswspace(char c);
 int		ft_isdigit(int c);
-int		create_rgb(unsigned char r, unsigned char g, unsigned char b);
-
-// key hook
-int		key_release(int keycode, t_game *game);
-int		key_press(int keycode, t_game *game);
-int		play(t_game *game);
-
-void    draw(t_game *game);
-void	performe_dda(t_game *game);
-void	init_vecteur(t_game *game);
-void	display(t_game *game);
-int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
+int		is_wspace(char c);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 14:45:06 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/26 18:12:52 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:38:56 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,22 @@ void	draw_border(t_game *game)
 	int	color;
 
 	i = 0;
-	color = create_trgb(0, 255, 215, 46);
+	color = create_rgb(255, 215, 46);
 	while (i <= game->minimap.width)
 	{
-		pixel_put(game, game->minimap.width + 1, i, color);
-		pixel_put(game, game->minimap.width + 2, i, color);
+		mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr,
+			game->minimap.width + 1, i, color);
+		mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr,
+			game->minimap.width + 2, i, color);
 		i++;
 	}
 	i = 0;
 	while (i <= game->minimap.width + 2)
 	{
-		pixel_put(game, i, game->minimap.width + 1, color);
-		pixel_put(game, i, game->minimap.width + 2, color);
+		mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr,
+			i, game->minimap.width + 1, color);
+		mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr,
+			i, game->minimap.width + 2, color);
 		i++;
 	}
 }
@@ -38,44 +42,53 @@ int	is_in_map(t_game *game, double x, double y)
 {
 	if (x < 0 || y < 0)
 		return (0);
-	if ((int)y >= game->map_y_scale || (size_t)x >= ft_strlen(game->map[(int)y]))
+	if ((int)y >= game->map_y_scale
+		|| (size_t)x >= ft_strlen(game->map[(int)y]))
 		return (0);
 	return (1);
 }
 
-void	draw_map(t_game *game)
+void	draw_line(t_game *game, int pixel[2], double pos[2], int last_pos)
 {
-	int		color;
-	int 	last_pos;
-	double	scale;
-	int		pixel[2];
-	double	pos[2];
+	int	color;
+	int	result;
 
-	scale = 1 / (game->minimap.width * 0.1);
+	while (pixel[0] <= game->minimap.width)
+	{
+		last_pos = (int)pos[0];
+		if (!is_in_map(game, pos[0], pos[1])
+			|| is_wspace(game->map[(int)pos[1]][(int)pos[0]]))
+			color = 0;
+		else if (game->map[(int)pos[1]][(int)pos[0]] == '1')
+			color = create_rgb(63, 63, 63);
+		else
+			color = create_rgb(220, 220, 220);//remplacer par une variable brut, plus propre
+		while (last_pos == (int)pos[0] && pixel[0] <= game->minimap.width)
+		{
+			result = pixel[1] * game->img.size_line / 4 + pixel[0];//changer par putpixel
+			*(game->minimap.img.addr + result) = color;
+			pos[0] += game->minimap.scale;
+			pixel[0]++;
+		}
+	}
+}
+
+void	draw_map(t_game *game, int pixel[2], double pos[2])
+{
+	int		result;
+	int		color;
+	int		last_pos;
+
+	game->minimap.scale = 1 / (game->minimap.width * 0.1);
 	pos[1] = game->player.posX - 5;
 	pixel[1] = 0;
 	while (pixel[1] <= game->minimap.width)
 	{
 		pos[0] = game->player.posY - 5;
 		pixel[0] = 0;
-		while (pixel[0] <= game->minimap.width)
-		{
-			last_pos = (int)pos[0];
-			if (!is_in_map(game, pos[0], pos[1]) || is_wspace(game->map[(int)pos[1]][(int)pos[0]]))
-				color = 0;//create_trgb(255, 20, 10, 8);
-			else if (game->map[(int)pos[1]][(int)pos[0]] == '1')
-				color = create_trgb(0, 63, 63, 63);
-			else
-				color = create_trgb(0, 220, 220, 220);
-			while (last_pos == (int)pos[0] && pixel[0] <= game->minimap.width)
-			{
-				pixel_put(game, pixel[0], pixel[1], color);
-				pos[0] += scale;
-				pixel[0]++;
-			}
-		}
+		draw_line(game, );
 		pixel[1]++;
-		pos[1] += scale;
+		pos[1] += game->minimap.scale;
 	}
 }
 
@@ -84,7 +97,8 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1) {
     int dy = abs(y1 - y0), sy = y0 < y1 ? 1 : -1; 
     int err = (dx > dy ? dx : -dy) / 2, e2;
 	
-	pixel_put(game, x0, y0, 0);	
+	mlx_pixel_put(game->mlibx.mlx_ptr, game->mlibx.win_ptr, x0, y0, 0);			
+    printf("[%d][%d]\n", x0, y0);
 	//put_pixel(x0, y0);
 
     if (x0 == x1 && y0 == y1) return;
