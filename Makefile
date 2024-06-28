@@ -6,7 +6,7 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/06/27 22:33:16 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/06/28 02:27:50 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ LDFLAGS 	= -Lminilibx/mlx_Linux -Lminilibx/mlx -L/usr/lib -Imlx_linux -lXext -lX
 LIB 		= inc/ml/libmlx.a inc/ml/libmlx_Linux.a
 RM			= rm -f
 
-SRC 		= $(SRC_DIR)$(GAME_DIR)main.c \
+SRC			= $(SRC_DIR)$(GAME_DIR)main.c \
 			  $(SRC_DIR)$(GAME_DIR)free_game.c \
 			  $(SRC_DIR)$(GAME_DIR)dda.c \
 			  $(SRC_DIR)$(GAME_DIR)display.c \
@@ -50,6 +50,7 @@ SRC_BONUS = $(SRC_BONUS_DIR)$(GAME_DIR)main.c \
 			  $(SRC_BONUS_DIR)$(GAME_DIR)draw.c \
 			  $(SRC_BONUS_DIR)$(GAME_DIR)key.c \
 			  $(SRC_BONUS_DIR)$(GAME_DIR)mini_map.c \
+			  $(SRC_BONUS_DIR)$(GAME_DIR)mini_map_utils.c \
 			  $(SRC_BONUS_DIR)$(GAME_DIR)key_utils.c \
 			  $(SRC_BONUS_DIR)$(INIT_DIR)vecteur_init.c \
 			  $(SRC_BONUS_DIR)$(INIT_DIR)map_init.c \

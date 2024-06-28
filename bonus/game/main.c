@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:36:55 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 19:06:42 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/06/28 02:17:08 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int	main(int ac, char **av)
 {
 	t_game	game;
 
+	if (HEIGHT < 200 || WIDTH < 200 || HEIGHT > 4000 || WIDTH > 6000
+		|| WIDTH / 8 >= HEIGHT)
+		return (write(2, "Error\nWrong dimension\n", 23), 1);
 	if (ac != 2)
 		return (write(2, "Error\nNo .cub file specified\n", 29), 1);
 	init(&game, av);
