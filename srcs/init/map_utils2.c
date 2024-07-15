@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 20:58:16 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/27 23:25:20 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:27:16 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,19 @@ void	verify_texture(t_game *game, char *line)
 		free_game(game, 2);
 }
 
+int	already_filled(t_game *game, char *line)
+{
+	if (line[0] == 'N' && line[1] == 'O' && game->no.img)
+		return (1);
+	if (line[0] == 'S' && line[1] == 'O' && game->so.img)
+		return (1);
+	if (line[0] == 'W' && line[1] == 'E' && game->we.img)
+		return (1);
+	if (line[0] == 'E' && line[1] == 'A' && game->ea.img)
+		return (1);
+	return (0);
+}
+
 void	open_texture(t_game *game, size_t line)
 {
 	int	j;
@@ -59,8 +72,8 @@ void	open_texture(t_game *game, size_t line)
 	j = 2;
 	while (is_wspace(game->map[line][j]))
 		j++;
-	if (j == 2)
-		free_game(game, 1);
+	if (j == 2 || already_filled(game, game->map[line]))
+		free_game(game, 3);
 	del_newline(game->map[line]);
 	if (game->map[line][0] == 'N' && game->map[line][1] == 'O' &&
 		!game->no.img)
@@ -109,6 +122,10 @@ void	map_verif(t_game *game)
 		{
 			if (game->map[i][j] == '0')
 				verify_point(game, i, j);
+			if (game->map[i][j] && (game->map[i][j] != '1' && game->map[i][j] != '0'
+				&& game->map[i][j] != 'E' && game->map[i][j] != 'W' && game->map[i][j] != 'S'
+				&& game->map[i][j] !='N' && !is_wspace(game->map[i][j])))
+				free_game(game, 3);
 		}
 	}
 }
