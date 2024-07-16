@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/07/16 13:35:06 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:51:19 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	map_filler(char *file, t_game *game)
 	}
 	close(fd);
 	game->map = handle_header(game);
-	print_map(game->map);
 	map_verif(game);
 	get_img_addr(game);
 }

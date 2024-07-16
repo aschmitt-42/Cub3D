@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:42:26 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/27 23:27:15 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:52:56 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ int	still_header(t_game *game, size_t line)
 	if (game->c && game->f && game->no.img && game->so.img && game->we.img
 		&& game->ea.img && game->map[line][0] != '\n')
 		return (0);
-	return (1);//verifier si toutes les infos du header sont remplie, et si la ligne nest pas juste un /n, alors header est finit
+	return (1);
 }
