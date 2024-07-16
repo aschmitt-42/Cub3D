@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/28 02:29:48 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:34:54 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ void	performe_dda(t_game *game);
 void	init_vecteur(t_game *game);
 void	display(t_game *game);
 void	cub3d(t_game *game);
+void	pos_start(t_game *game);
+char	**ft_malloc_map(t_game *game, char *file);
 
 // key 
 int		move_lr(t_game *game);

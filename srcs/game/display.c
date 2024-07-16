@@ -6,17 +6,11 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:48:43 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 23:27:15 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:52:42 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	create_trgb(unsigned char t, unsigned char r,
-	unsigned char g, unsigned char b)
-{
-	return (*(int *)(unsigned char [4]){b, g, r, t});
-}
 
 void	pixel_put(t_game *game, int x, int y, int color)
 {
@@ -26,7 +20,7 @@ void	pixel_put(t_game *game, int x, int y, int color)
 	*(game->img.addr + test) = color;
 }
 
-void	test(t_game *game, t_image *texture, int texX)
+void	display_2(t_game *game, t_image *texture, int texX)
 {
 	double	texpos;
 	double	step;
@@ -79,5 +73,5 @@ void	display(t_game *game)
 		texx = texture.width - texx - 1;
 	if (game->ray.side == 1 && game->ray.raydiry < 0)
 		texx = texture.width - texx - 1;
-	test(game, &texture, texx);
+	display_2(game, &texture, texx);
 }

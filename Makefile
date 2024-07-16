@@ -6,7 +6,7 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/06/28 02:27:50 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/07/16 13:40:51 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC			= $(SRC_DIR)$(GAME_DIR)main.c \
 			  $(SRC_DIR)$(INIT_DIR)mlx_init.c \
 			  $(SRC_DIR)$(INIT_DIR)map_utils1.c \
 			  $(SRC_DIR)$(INIT_DIR)map_utils2.c \
+			  $(SRC_DIR)$(INIT_DIR)map_utils3.c \
 			  $(SRC_DIR)$(LIBFT_DIR)gnl.c \
 			  $(SRC_DIR)$(LIBFT_DIR)utils1.c \
 			  $(SRC_DIR)$(LIBFT_DIR)utils2.c
@@ -57,6 +58,7 @@ SRC_BONUS = $(SRC_BONUS_DIR)$(GAME_DIR)main.c \
 			  $(SRC_BONUS_DIR)$(INIT_DIR)mlx_init.c \
 			  $(SRC_BONUS_DIR)$(INIT_DIR)map_utils1.c \
 			  $(SRC_BONUS_DIR)$(INIT_DIR)map_utils2.c \
+			  $(SRC_BONUS_DIR)$(INIT_DIR)map_utils3.c \
 			  $(SRC_BONUS_DIR)$(LIBFT_DIR)gnl.c \
 			  $(SRC_BONUS_DIR)$(LIBFT_DIR)utils1.c \
 			  $(SRC_BONUS_DIR)$(LIBFT_DIR)utils2.c

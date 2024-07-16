@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:34:01 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/27 23:21:39 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:52:17 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	draw_dist(t_game *game)
 {
-	game->ray.h = game->height ;
+	game->ray.h = game->height;
 	game->ray.lineheight = (int)(game->ray.h / game->ray.perpwalldist);
 	game->ray.drawstart = -game->ray.lineheight / 2 + game->ray.h / 2;
 	if (game->ray.drawstart < 0)
