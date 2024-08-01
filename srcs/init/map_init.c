@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/07/16 13:51:19 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:07:19 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	map_filler(char *file, t_game *game)
 
 void	init_map(char *file, t_game *game)
 {
-	if (file == NULL || !check_extention(file))
-		exit(1);
+	if (file == NULL || !check_extention(file, ".cub"))
+		free_game(game, 11);
 	map_filler(file, game);
 }

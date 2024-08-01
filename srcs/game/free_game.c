@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/27 23:27:15 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:05:14 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	print_error(int code)
 		printf("Error\nColor error\n");
 	else if (code == 10)
 		printf("Closing Cub3d\n");
+	else if (code == 11)
+		printf("Wrong extension\n");
 }
 
 void	game_construct(t_game *game)

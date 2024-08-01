@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:42:26 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/07/16 13:52:48 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:07:01 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,16 @@ void	print_map(char **map)
 	printf("\n");
 }
 
-int	check_extention(char *file)
+int	check_extention(char *file, char *extension)
 {
 	int	i;
 
 	i = 0;
 	while (file[i])
 		i++;
-	if (file[i - 4] == '.' && file[i - 3] == 'c'
-		&& file[i - 2] == 'u' && file[i - 1] == 'b')
+	if (file[i - 4] == extension[0] && file[i - 3] == extension[1]
+		&& file[i - 2] == extension[2] && file[i - 1] == extension[3])
 		return (1);
-	printf("Error\nUnvalid extension\n");
 	return (0);
 }
 

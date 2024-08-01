@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 20:58:16 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/07/16 13:36:06 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:11:50 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	open_texture(t_game *game, size_t line)
 	int	j;
 
 	j = 2;
+	if (!check_extention(game->map[line], ".xpm"))
+		free_game(game, 11);
 	while (is_wspace(game->map[line][j]))
 		j++;
 	if (j == 2 || already_filled(game, game->map[line]))
