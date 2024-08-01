@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 22:34:49 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/06/28 02:23:39 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:53:10 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	draw_line(t_game *game, int *pixel, double *pos)
 			|| is_wspace(game->map[(int)pos[1]][(int)pos[0]]))
 			color = 0;
 		else if (game->map[(int)pos[1]][(int)pos[0]] == '1')
-			color = 4144959;
+			color = 0;
 		else
 			color = 14474460;
 		while (last_pos == (int)pos[0] && pixel[0] <= game->minimap.width)
