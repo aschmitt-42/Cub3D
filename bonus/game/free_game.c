@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:12:13 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/06/27 23:27:15 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/08/17 23:24:27 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	game_construct(t_game *game)
 	game->p_map = NULL;
 	game->width = WIDTH;
 	game->height = HEIGHT;
-	game->c = 0;
-	game->f = 0;
+	game->c = -1;
+	game->f = -1;
 	game->no.img = NULL;
 	game->so.img = NULL;
 	game->we.img = NULL;

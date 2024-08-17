@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:49:38 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/08/01 16:07:19 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/08/17 23:21:47 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ char	**handle_header(t_game *game)
 		else if (game->map[line][0] == 'F' || game->map[line][0] == 'C')
 			create_color_fc(game, line, 1, 0);
 		else if (game->map[line][0] != '\n')
+		{
+			printf("%s\n", game->map[line]);
 			free_game(game, 3);
+		}
 		line++;
 	}
 	free_map(game, line);

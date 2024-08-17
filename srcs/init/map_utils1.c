@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:42:26 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/08/17 23:16:14 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/08/17 23:27:27 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	still_header(t_game *game, size_t line)
 {
 	if (!game->map || !game->map[line])
 		return (0);
-	if (game->c && game->f && game->no.img && game->so.img && game->we.img
+	if (game->c != -1 && game->f != -1 && game->no.img && game->so.img && game->we.img
 		&& game->ea.img && game->map[line][0] != '\n')
 		return (0);
 	return (1);
