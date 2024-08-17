@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:42:26 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/08/01 16:07:01 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/08/17 23:16:14 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ int	check_extention(char *file, char *extension)
 	i = 0;
 	while (file[i])
 		i++;
+	while (is_wspace(file[i - 1]))
+	{
+		i--;
+		file[i] = '\0';
+	}
 	if (file[i - 4] == extension[0] && file[i - 3] == extension[1]
 		&& file[i - 2] == extension[2] && file[i - 1] == extension[3])
 		return (1);

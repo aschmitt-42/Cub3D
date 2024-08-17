@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
+#    By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/08/01 15:46:29 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/08/17 23:05:04 by eboumaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
