@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+         #
+#    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/08/17 23:05:04 by eboumaza         ###   ########.fr        #
+#    Updated: 2024/09/23 15:59:56 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ $(NAME):	$(OBJ)
 			$(MAKE_ML)
 			$(CC) $^ $(LIB) $(LDFLAGS) -o $(NAME)
 
-$(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(INC)*.h Makefile
+$(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(INC)*.h Makefile $(INC)
 			@mkdir -p $(@D)
 			$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
