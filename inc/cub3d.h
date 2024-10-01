@@ -6,7 +6,7 @@
 /*   By: eboumaza <eboumaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:34:13 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/08/01 16:07:54 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:15:23 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	free_game(t_game *game, int error_code);
 void	get_img_addr(t_game *game);
 void	get_y_scale_map(t_game *game);
 void	create_color_fc(t_game *game, int line, int j, int i);
-void	open_texture(t_game *game, size_t line);
+void	open_texture(t_game *game, size_t line, int j);
 void	del_newline(char *line);
 int		still_header(t_game *game, size_t line);
 int		check_extention(char *file, char *extension);

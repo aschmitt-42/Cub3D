@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboumaza <eboumaza.trav@gmail.com>         +#+  +:+       +#+        */
+/*   By: eboumaza <eboumaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 20:58:16 by eboumaza          #+#    #+#             */
-/*   Updated: 2024/08/17 23:15:53 by eboumaza         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:15:07 by eboumaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,8 @@ int	already_filled(t_game *game, char *line)
 	return (0);
 }
 
-void	open_texture(t_game *game, size_t line)
+void	open_texture(t_game *game, size_t line, int j)
 {
-	int	j;
-
-	j = 2;
 	if (!check_extention(game->map[line], ".xpm"))
 		free_game(game, 11);
 	while (is_wspace(game->map[line][j]))

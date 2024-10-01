@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
+#    By: eboumaza <eboumaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 20:06:26 by aschmitt          #+#    #+#              #
-#    Updated: 2024/09/23 15:59:56 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/10/01 14:25:52 by eboumaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,8 +87,8 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(INC)*.h Makefile $(INC)
 
 bonus:          $(NAME_BONUS)
 
-$(NAME_BONUS):  $(OBJ_BONUS)
-				$(MAKE_ML)
+$(NAME_BONUS): $(OBJ_BONUS)
+				$(MAKE_ML)	
 				$(CC) $^ $(LIB) $(LDFLAGS) -o $(NAME_BONUS)
 			
 $(OBJ_DIR_BONUS)%.o:	$(SRC_BONUS_DIR)%.c $(INC)*.h Makefile
